@@ -462,6 +462,76 @@ a:hover .logo-anim .l-dot { animation-duration: .3s, 1.2s; }
 .tile[data-link]:hover { filter: brightness(1.08) saturate(1.1); }
 @media (max-width: 420px) { .tile:not(.wide):not(.big) .t { font-size: 13px; } }
 
+/* ---------- Coffee pyramid (plans) ---------- */
+.plan .obj.cups { position: relative; height: 170px; }
+.plan .cups img { position: absolute; left: calc(50% + var(--x) - 19px); bottom: var(--y); width: 38px; max-height: none; filter: drop-shadow(0 6px 6px rgba(0,0,0,.16)); opacity: 0; translate: 0 -60px; transition: opacity .3s var(--d), translate .55s cubic-bezier(.3,1.5,.5,1) var(--d); }
+.plans.in .cups img { opacity: 1; translate: 0 0; }
+.plan:hover .cups img { transform: none; }
+.cups { transform-origin: 50% 100%; }
+.plan:hover .cups { animation: wobble .8s var(--ease); }
+@keyframes wobble { 25% { transform: rotate(-2.5deg); } 55% { transform: rotate(2deg); } 80% { transform: rotate(-1deg); } }
+@media (prefers-reduced-motion: reduce) { .plan .cups img { opacity: 1; translate: none; } }
+
+/* ---------- Connect: two columns + phone ---------- */
+.cn-grid { display: grid; gap: 48px; align-items: center; }
+.cn-left { display: grid; gap: 22px; min-width: 0; }
+.connect .eyebrow { color: #f3c48a; }
+.cn-cta { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; justify-self: start; color: #e9e2da; font-size: 15px; padding: 12px 16px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); transition: background .25s; }
+.cn-cta b { color: var(--paper); }
+.cn-cta svg { width: 18px; height: 18px; transition: transform .3s var(--ease); }
+.cn-cta:hover { background: rgba(255,255,255,.12); }
+.cn-cta:hover svg { transform: translateX(4px); }
+.cn-right { position: relative; justify-self: center; padding: 10px 0 30px; }
+.phone { display: block; width: min(300px, 78vw); aspect-ratio: 9 / 18.5; border-radius: 48px; padding: 11px; background: linear-gradient(145deg, #3a3a3e, #121214 40%, #2a2a2e); box-shadow: 0 0 0 1.5px rgba(255,255,255,.18), 0 50px 100px rgba(0,0,0,.6), 0 0 120px rgba(214,41,118,.18); transform: rotate(-4deg); transition: transform .6s var(--ease); animation: float 7s ease-in-out infinite; }
+.phone:hover { transform: rotate(0deg) translateY(-6px); }
+@keyframes float { 50% { translate: 0 -10px; } }
+.ph-screen { position: relative; display: grid; align-content: start; gap: 12px; height: 100%; border-radius: 38px; overflow: hidden; background: #000; color: #f5f5f5; padding: 38px 14px 14px; font-size: 12px; }
+.ph-screen::before { content: ""; position: absolute; top: 10px; left: 50%; width: 84px; height: 24px; border-radius: 20px; background: #0c0c0c; transform: translateX(-50%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
+.ph-bar { display: flex; align-items: center; justify-content: space-between; font-size: 15px; }
+.ph-bar svg { width: 20px; height: 20px; }
+.ph-prof { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; align-items: center; }
+.ph-av { display: block; width: 64px; height: 64px; border-radius: 50%; padding: 2.5px; background: linear-gradient(225deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); }
+.ph-av > span { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: #0a0a0a; border: 2.5px solid #000; color: #f5f5f5; }
+.ph-av svg { width: 60%; height: 60%; }
+.ph-av.sm { width: 38px; height: 38px; padding: 2px; }
+.ph-av.sm > span { border-width: 1.5px; }
+.ph-id { display: grid; gap: 2px; min-width: 0; }
+.ph-id b { font-size: 13px; }
+.ph-id small { color: #d6d6d6; font-size: 11px; line-height: 1.35; }
+.ph-id .ph-link { color: #8ab4ff; }
+.ph-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.ph-btns span { text-align: center; padding: 7px 0; border-radius: 9px; font-weight: 600; font-size: 12px; background: #262626; }
+.ph-btns .ph-follow { background: #0095f6; }
+.ph-hl { display: flex; gap: 12px; padding-block: 2px; }
+.ph-hl > span { display: grid; justify-items: center; gap: 4px; }
+.ph-hl i { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: #121212; box-shadow: 0 0 0 1.5px #3a3a3a, inset 0 0 0 3px #000; color: var(--amber); font-style: normal; }
+.ph-hl i svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.75; }
+.ph-hl i.hmu { font: 700 18px var(--font-jp); color: var(--gold); }
+.ph-hl small { font-size: 10px; color: #ddd; }
+.ph-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; margin-inline: -14px; }
+.ph-grid > span { position: relative; aspect-ratio: 4 / 5; display: grid; place-items: center; overflow: hidden; }
+.ph-grid svg { width: 54%; }
+.ph-grid code { font: 500 9px/1.4 var(--font-mono); color: #d8d3cd; text-align: left; }
+.ph-grid .g1 { background: radial-gradient(80% 80% at 30% 20%, rgba(226,112,30,.7), transparent 60%), radial-gradient(80% 80% at 90% 100%, rgba(47,74,53,.95), transparent 60%), #0b0b0c; color: #f5f5f5; }
+.ph-grid .g2 { background: #101012; } .ph-grid .g2 code { color: var(--amber); }
+.ph-grid .g3 { background: radial-gradient(80% 100% at 70% 30%, #33230c, var(--mu-ground)); }
+.ph-grid .g3 em { font: 700 40px var(--font-jp); color: var(--gold); font-style: normal; filter: blur(3px); opacity: .55; }
+.ph-grid .g3 svg { position: absolute; width: 22px; height: 22px; color: var(--gold); }
+.ph-grid .g4 { background: var(--paper); color: var(--ink); } .ph-grid .g4 b { font: 800 15px/1 var(--font-ui); letter-spacing: -.04em; }
+.ph-grid .g5 { background: var(--crema); } .ph-grid .g5 img { width: 46%; filter: drop-shadow(0 6px 6px rgba(0,0,0,.25)); }
+.ph-grid .g6 { background: var(--pine); } .ph-grid .g6 code { color: #e9f1e6; text-align: center; } .ph-grid .g6 b { font: 800 26px/1 var(--font-ui); }
+.ph-grid .g7 { background: radial-gradient(70% 70% at 50% 40%, #2a2a2e, #0b0b0c); } .ph-grid .g7 img { height: 82%; width: auto; filter: drop-shadow(0 8px 8px rgba(0,0,0,.5)); }
+.ph-grid .g8 { background: #050505; } .ph-grid .g8 svg { width: 80%; }
+.ph-grid .g9 { background: var(--maple); color: #fff; align-content: center; gap: 2px; } .ph-grid .g9 b { font: 800 16px/1 var(--font-ui); letter-spacing: -.03em; } .ph-grid .g9 small { font: 500 10px var(--font-mono); opacity: .8; }
+.ph-note { position: absolute; left: -90px; top: 58%; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border-radius: 20px; min-width: 230px; color: var(--paper); opacity: 0; transform: translateX(-24px) scale(.94); transition: opacity .5s var(--ease) .5s, transform .7s var(--ease) .5s; }
+.connect.in .ph-note { opacity: 1; transform: none; }
+.ph-note b { display: block; font-size: 13px; }
+.ph-note small { display: block; font-size: 12px; color: #e3ddd6; }
+.ph-note em { margin-left: auto; align-self: start; font-style: normal; font-size: 11px; color: var(--mist); }
+@media (max-width: 899px) { .ph-note { left: 50%; top: auto; bottom: 0; transform: translate(-50%, 20px) scale(.94); } .connect.in .ph-note { transform: translate(-50%, 0); } }
+@media (min-width: 900px) { .cn-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: 64px; } }
+@media (prefers-reduced-motion: reduce) { .ph-note { opacity: 1; transform: none; } .phone { animation: none; } }
+
 /* ---------- Letter (café) ---------- */
 .letter { background: var(--crema); color: var(--espresso); padding-block: 72px 88px; overflow: hidden; }
 .letter-grid { display: grid; gap: 28px; align-items: center; }
@@ -612,7 +682,7 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
       <h2 id="plans-title" data-i18n="plans.title">the plans:</h2>
       <div class="plan-grid">
         <div class="plan"><div class="obj"><img src="media/kit-laptop.webp" alt="Laptop"></div><p data-i18n="plans.p1">Build + ship cool stuff</p></div>
-        <div class="plan"><div class="obj"><img src="media/kit-espresso.webp" alt="Glass of espresso"></div><p data-i18n="plans.p2">Drink an unhealthy amount of coffee</p></div>
+        <div class="plan"><div class="obj cups" role="img" aria-label="A pyramid of ten stacked espresso glasses"><img src="media/kit-espresso.webp" alt="" style="--x:-57px;--y:0px;--d:0ms"><img src="media/kit-espresso.webp" alt="" style="--x:-19px;--y:0px;--d:90ms"><img src="media/kit-espresso.webp" alt="" style="--x:19px;--y:0px;--d:180ms"><img src="media/kit-espresso.webp" alt="" style="--x:57px;--y:0px;--d:270ms"><img src="media/kit-espresso.webp" alt="" style="--x:-38px;--y:41px;--d:360ms"><img src="media/kit-espresso.webp" alt="" style="--x:0px;--y:41px;--d:450ms"><img src="media/kit-espresso.webp" alt="" style="--x:38px;--y:41px;--d:540ms"><img src="media/kit-espresso.webp" alt="" style="--x:-19px;--y:82px;--d:630ms"><img src="media/kit-espresso.webp" alt="" style="--x:19px;--y:82px;--d:720ms"><img src="media/kit-espresso.webp" alt="" style="--x:0px;--y:123px;--d:810ms"></div><p data-i18n="plans.p2">Drink an unhealthy amount of coffee</p></div>
         <div class="plan"><div class="obj">
           <div class="mrr" role="img" aria-label="Revenue card: MRR zero dollars today, with a dashed line showing the growth still to come">
             <div class="top"><span>MRR</span><span class="chip" data-i18n="plans.soon">↑ soon</span></div>
@@ -758,7 +828,9 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
   <section class="connect" id="connect" aria-labelledby="connect-title">
     <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
     <canvas id="leaves" aria-hidden="true"></canvas>
-    <div class="wrap">
+    <div class="wrap cn-grid">
+     <div class="cn-left">
+      <p class="eyebrow" data-i18n="connect.eyebrow">Behind the commits</p>
       <h2 id="connect-title" data-i18n="connect.title">Follow along</h2>
       <p class="sub" data-i18n="connect.sub">New updates land on Instagram first. Clips go to TikTok and YouTube.</p>
       <div class="cc">
@@ -778,6 +850,38 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 14a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>
           <span><span class="t" data-i18n="connect.all">All links</span><br><span class="h">linktr.ee/commit.zero</span></span></a>
       </div>
+      <a class="cn-cta" href="#hire"><span data-i18n="connect.hire">Want something like this for your business?</span> <b data-i18n="nav.hire">Start a project</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+     </div>
+     <div class="cn-right">
+      <a class="phone" data-link="instagram" href="https://www.instagram.com/commit.zero/" target="_blank" rel="noopener" aria-label="Open @commit.zero on Instagram">
+        <span class="ph-screen">
+          <span class="ph-bar"><b>commit.zero</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+          <span class="ph-prof">
+            <span class="ph-av"><span><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#i-logo"/></svg></span></span>
+            <span class="ph-id"><b>Commit Zero</b><small data-i18n="connect.bio">Building in public · software, games and business</small><small class="ph-link">linktr.ee/commit.zero</small></span>
+          </span>
+          <span class="ph-btns"><span class="ph-follow" data-i18n="connect.follow">Follow</span><span class="ph-msg" data-i18n="connect.msg">Message</span></span>
+          <span class="ph-hl" aria-hidden="true">
+            <span><i><svg viewBox="0 0 24 24"><use href="#i-code"/></svg></i><small>Builds</small></span>
+            <span><i class="hmu">無</i><small>Mu</small></span>
+            <span><i><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></i><small data-i18n="connect.hl3">Clients</small></span>
+            <span><i><svg viewBox="0 0 24 24"><use href="#i-flame"/></svg></i><small data-i18n="connect.hl4">Routine</small></span>
+          </span>
+          <span class="ph-grid" aria-hidden="true">
+            <span class="g1"><svg viewBox="0 0 200 200"><use href="#i-logo"/></svg></span>
+            <span class="g2"><code>$ git commit<br>-m "zero"</code></span>
+            <span class="g3"><em>無</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
+            <span class="g4"><b>ship &gt;<br>perfect</b></span>
+            <span class="g5"><img src="media/kit-espresso.webp" alt=""></span>
+            <span class="g6"><code>day<br><b>01</b></code></span>
+            <span class="g7"><img src="media/kit-can.webp" alt=""></span>
+            <span class="g8"><svg viewBox="0 0 100 100" fill="none" stroke-width="3"><path d="M0 30h100M0 70h100" stroke="rgba(255,255,255,.25)"/><path d="M30 30c20 0 20 40 40 40" stroke="#f0a92b"/><circle cx="30" cy="30" r="7" stroke="#fff"/><circle cx="70" cy="70" r="7" stroke="#f0a92b"/></svg></span>
+            <span class="g9"><b>devlog</b><small>#01</small></span>
+          </span>
+        </span>
+      </a>
+      <div class="ph-note glass" aria-hidden="true"><span class="ph-av sm"><span><svg viewBox="0 0 200 200"><use href="#i-logo"/></svg></span></span><span><b>commit.zero</b><small data-i18n="connect.note">posted a new devlog</small></span><em data-i18n="connect.now">now</em></div>
+     </div>
     </div>
   </section>
 
@@ -909,7 +1013,8 @@ const I18N = {
     "about.lead": "Commit Zero is where I document what I build: games, software and small businesses, plus the habits that keep them moving.",
     "about.p1": "Products, automations and the tools behind them.", "about.b2": "Business", "about.p2": "What I sell, what works and what doesn't.", "about.b3": "Discipline", "about.p3": "Routines that survive a full week.",
     "avatar": ["hey, I'm Victor.", "building something new tonight.", "coffee number three.", "it all starts at commit zero."],
-    "connect.title": "Follow along", "connect.sub": "New updates land on Instagram first. Clips go to TikTok and YouTube.", "connect.x": "Notes and threads", "connect.all": "All links",
+    "connect.eyebrow": "Behind the commits", "connect.hire": "Want something like this for your business?", "connect.bio": "Building in public · software, games and business", "connect.follow": "Follow", "connect.msg": "Message", "connect.hl3": "Clients", "connect.hl4": "Routine", "connect.note": "posted a new devlog", "connect.now": "now",
+    "connect.title": "Follow along", "connect.sub": "The process, the mistakes and the launches. Everything lands on Instagram first, and the clips go to TikTok and YouTube.", "connect.x": "Notes and threads", "connect.all": "All links",
     "letter.eyebrow": "The newsletter", "letter.lead": "One short letter every Sunday, about the length of a coffee. What I built, what broke and what I'm trying next.",
     "letter.label": "Your email", "letter.note": "One email a week. Unsubscribe anytime.",
     "letter.invalid": "Enter a valid email, like name@gmail.com.", "letter.soon": "Signups open with the first issue. Follow on Instagram to catch it.",
@@ -973,7 +1078,8 @@ const I18N = {
     "about.lead": "A Commit Zero é onde eu documento o que construo: jogos, software e pequenos negócios, além dos hábitos que mantêm tudo andando.",
     "about.p1": "Produtos, automações e as ferramentas por trás deles.", "about.b2": "Negócios", "about.p2": "O que eu vendo, o que funciona e o que não funciona.", "about.b3": "Disciplina", "about.p3": "Rotinas que aguentam a semana inteira.",
     "avatar": ["e aí, sou o Victor.", "construindo algo novo hoje.", "café número três.", "tudo começa no commit zero."],
-    "connect.title": "Acompanhe", "connect.sub": "As novidades saem primeiro no Instagram. Os cortes vão pro TikTok e YouTube.", "connect.x": "Notas e threads", "connect.all": "Todos os links",
+    "connect.eyebrow": "Por trás dos commits", "connect.hire": "Quer algo assim pro seu negócio?", "connect.bio": "Construindo em público · software, jogos e negócios", "connect.follow": "Seguir", "connect.msg": "Mensagem", "connect.hl3": "Clientes", "connect.hl4": "Rotina", "connect.note": "postou um novo devlog", "connect.now": "agora",
+    "connect.title": "Acompanhe", "connect.sub": "O processo, os erros e os lançamentos. Tudo sai primeiro no Instagram, e os cortes vão pro TikTok e YouTube.", "connect.x": "Notas e threads", "connect.all": "Todos os links",
     "letter.eyebrow": "A newsletter", "letter.lead": "Uma carta curta todo domingo, do tamanho de um café. O que eu construí, o que quebrou e o que vou testar.",
     "letter.label": "Seu e-mail", "letter.note": "Um e-mail por semana. Cancele quando quiser.",
     "letter.invalid": "Digite um e-mail válido, como nome@gmail.com.", "letter.soon": "As inscrições abrem com a primeira edição. Siga no Instagram pra não perder.",
@@ -1154,6 +1260,9 @@ const T = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.en[k];
       lg.save(); lg.translate(p.x, p.y); lg.rotate(p.r); lg.scale(p.s, p.s); lg.globalAlpha = .55; lg.fillStyle = p.c; lg.fill(leafPath); lg.restore(); }); }
   lSize(); addEventListener("resize", lSize);
   if (!reduce) { new IntersectionObserver(([e]) => lOn = e.isIntersecting).observe(lc); (function ll() { if (lOn) lDraw(); requestAnimationFrame(ll); })(); } else lDraw();
+
+  const cnSec = document.getElementById("connect");
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); cnSec.classList.add("in"); } }, { threshold: .3 }).observe(cnSec);
 
   /* tilt on project cards */
   if (!reduce) document.querySelectorAll("[data-tilt]").forEach(el => {
