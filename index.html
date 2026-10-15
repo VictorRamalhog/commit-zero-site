@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta property="og:title" content="Commit Zero">
+<meta property="og:description" content="Software, business and discipline. The projects I'm building, in public.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='44' fill='%230a0a0a'/%3E%3Cline x1='38' y1='100' x2='76' y2='100' stroke='%23f5f5f5' stroke-width='16'/%3E%3Ccircle cx='118' cy='100' r='42' fill='none' stroke='%23f5f5f5' stroke-width='16'/%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Commit Zero</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Software, business and discipline. The projects I'm building, in public.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Noto+Serif+JP:wght@700&display=swap">
+<style>
+/* Layout: generative commit-graph billboard → Netflix project rows → cut-out "kit" → glass Control Center → café letter. Dark by design, two crema bands. */
+:root {
+  --ink: #050505;
+  --night: #0e0e10;
+  --paper: #f5f4f2;
+  --mist: #a9a5a1;
+  --line: rgba(255,255,255,.1);
+  --maple: #c8401f;
+  --pumpkin: #e2701e;
+  --amber: #f0a92b;
+  --pine: #2f4a35;
+  --gold: #d9a441;
+  --imsg: #0a84ff;          /* iMessage blue */
+  --snow: #ffffff;
+  --graphite: #1d1d1f;      /* Apple near-black on white */
+  --slate: #6e6e73;         /* Apple secondary on white */         /* MU UI accent */
+  --mu-ground: #0b0906;    /* MU UI ground */
+  --crema: #ede3d4;
+  --espresso: #2a1b13;
+  --roast: #6b4a35;
+  --glass: rgba(255,255,255,.08);
+  --glass-strong: rgba(255,255,255,.16);
+  --glass-edge: rgba(255,255,255,.22);
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+  --font-serif: "New York", "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-jp: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  --r-l: 28px; --r-m: 22px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --ease: cubic-bezier(.2,.8,.2,1);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--ink); }
+body { background: var(--ink); color: var(--paper); font-family: var(--font-ui); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+button { font: inherit; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 10px; }
+.wrap { width: 100%; max-width: 1280px; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--paper); color: var(--ink); padding: 10px 16px; border-radius: 12px; font-weight: 600; }
+.skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
+.eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mist); }
+
+/* ---------- Liquid glass ---------- */
+.glass {
+  position: relative; isolation: isolate;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid var(--glass-edge);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -1px 0 rgba(255,255,255,.06), 0 12px 40px rgba(0,0,0,.35);
+}
+.glass::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+  background: radial-gradient(140px 140px at var(--mx, 30%) var(--my, 0%), rgba(255,255,255,.22), transparent 70%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .glass { background: rgba(28,28,30,.92); } }
+@media (prefers-reduced-transparency: reduce) { .glass { background: rgba(28,28,30,.96); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; font: 600 16px/1 var(--font-ui); border: 0; cursor: pointer; transition: transform .25s var(--ease), background .25s; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--paper); color: var(--ink); }
+.btn-primary:hover { background: #fff; }
+.btn-glass { color: var(--paper); }
+.btn-glass:hover { background: var(--glass-strong); }
+.btn svg { width: 20px; height: 20px; flex: none; }
+
+/* ---------- Nav ---------- */
+.topnav { position: fixed; z-index: 50; top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); display: none; align-items: center; gap: 4px; padding: 6px; border-radius: 999px; }
+.topnav a { padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--mist); transition: color .2s, background .2s; }
+.topnav a:hover { color: var(--paper); background: var(--glass); }
+.topnav a[aria-current="true"] { color: var(--paper); background: var(--glass-strong); }
+.topnav .brand { padding: 6px 10px 6px 8px; color: var(--paper); }
+.topnav .brand svg { width: 30px; height: 30px; }
+.topnav .cta { background: var(--paper); color: var(--ink); font-weight: 600; margin-left: 6px; }
+.topnav .cta:hover { background: #fff; color: var(--ink); }
+.tabbar { position: fixed; z-index: 50; left: var(--gutter-l); right: var(--gutter-r); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 6px; border-radius: 999px; }
+.tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px 4px; border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--mist); min-height: 48px; }
+.tabbar a svg { width: 22px; height: 22px; }
+.tabbar a[aria-current="true"] { color: var(--paper); background: var(--glass-strong); }
+@media (min-width: 900px) { .topnav { display: flex; } .tabbar { display: none; } }
+
+/* ---------- Hero: generative commit graph ---------- */
+.hero { position: relative; overflow: hidden; background: radial-gradient(120% 80% at 80% 0%, #1a1310 0%, var(--ink) 55%); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-fade { position: absolute; inset: auto 0 0 0; height: 160px; background: linear-gradient(180deg, transparent, var(--ink)); pointer-events: none; }
+.hero-inner { position: relative; z-index: 2; display: grid; gap: 36px; padding-block: calc(120px + env(safe-area-inset-top, 0px)) 72px; }
+.hero-copy { display: grid; gap: 20px; }
+.hero h1 { font-size: clamp(44px, 12vw, 104px); line-height: .92; font-weight: 800; letter-spacing: -0.05em; max-width: 10ch; }
+.hero h1 .z { color: transparent; -webkit-text-stroke: 1.5px var(--paper); }
+.hero .synopsis { font-size: clamp(17px, 4.4vw, 21px); color: #d9d5d1; max-width: 40ch; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.term { border-radius: var(--r-m); padding: 0; overflow: hidden; max-width: 520px; width: 100%; }
+.term-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,.08); font: 500 12px var(--font-mono); color: var(--mist); }
+.term-bar svg { width: 14px; height: 14px; color: var(--mist); }
+.term pre { margin: 0; padding: 16px 18px 20px; font: 400 13.5px/1.75 var(--font-mono); color: #d8d3cd; white-space: pre-wrap; min-height: 196px; }
+.term .h { color: var(--amber); }
+.term .p { color: var(--mist); }
+.term .zero { color: var(--pumpkin); }
+.caret { display: inline-block; width: .55em; height: 1.1em; vertical-align: -0.2em; background: var(--paper); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.float-obj { position: absolute; z-index: 1; pointer-events: none; filter: drop-shadow(0 30px 40px rgba(0,0,0,.6)); will-change: transform; }
+.float-obj img { width: 100%; height: auto; }
+.fo-kbd { width: min(34vw, 300px); right: 4%; top: 18%; transform: rotate(-14deg); display: none; }
+.fo-can { width: min(6vw, 64px); right: 36%; top: 12%; transform: rotate(14deg); display: none; }
+@media (min-width: 1100px) { .fo-kbd, .fo-can { display: block; } }
+@media (min-width: 900px) { .hero-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: end; padding-block: 170px 110px; } .term { justify-self: end; } }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.hero-copy > * { animation: rise .9s var(--ease) both; }
+.hero-copy > *:nth-child(2) { animation-delay: .08s; } .hero-copy > *:nth-child(3) { animation-delay: .16s; } .hero-copy > *:nth-child(4) { animation-delay: .24s; }
+
+/* ---------- Commit marquee ---------- */
+.marquee { border-block: 1px solid var(--line); overflow: hidden; background: var(--night); }
+.marquee-track { display: flex; gap: 40px; width: max-content; padding-block: 14px; animation: slide 60s linear infinite; font: 400 13px var(--font-mono); color: var(--mist); white-space: nowrap; }
+.marquee-track span b { color: var(--amber); font-weight: 500; margin-right: 8px; }
+.marquee-track svg { width: 14px; height: 14px; vertical-align: -2px; margin-right: 8px; color: var(--paper); }
+@keyframes slide { to { transform: translateX(-50%); } }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* ---------- Section heads ---------- */
+.sec { padding-block: 64px 24px; }
+.sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.sec-head h2 { font-size: clamp(26px, 6.4vw, 40px); font-weight: 800; letter-spacing: -0.035em; }
+.sec-head p { color: var(--mist); font-size: 15px; margin-top: 6px; max-width: 46ch; }
+
+/* ---------- Mu billboard (designed, no stock) ---------- */
+.mu { position: relative; border-radius: var(--r-l); overflow: hidden; background: radial-gradient(90% 120% at 85% 20%, #2a1d0c 0%, var(--mu-ground) 60%); border: 1px solid rgba(217,164,65,.25); min-height: 520px; display: grid; align-items: end; }
+.mu-glyph { position: absolute; right: -4%; top: 50%; transform: translateY(-52%); font: 700 clamp(260px, 60vw, 560px)/1 var(--font-jp); color: transparent; background: linear-gradient(110deg, #6b4e1d 20%, #f3d38a 40%, #b98428 55%, #6b4e1d 75%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; opacity: .9; animation: sheen 6s ease-in-out infinite; user-select: none; }
+@media (max-width: 899px) { .mu-glyph { opacity: .4; right: -18%; } }
+@keyframes sheen { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
+.mu-slash { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mu-slash path { stroke: #f7e2ad; stroke-width: 2; fill: none; stroke-dasharray: 1400; stroke-dashoffset: 1400; filter: drop-shadow(0 0 8px rgba(240,169,43,.8)); }
+.mu.in .mu-slash path { animation: slash 1.1s .2s var(--ease) forwards; }
+@keyframes slash { to { stroke-dashoffset: 0; } }
+.mu-embers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mu-copy { position: relative; z-index: 2; padding: clamp(22px, 5vw, 48px); display: grid; gap: 16px; max-width: 560px; background: linear-gradient(0deg, rgba(11,9,6,.9) 40%, transparent); }
+.mu-word { font: 800 clamp(56px, 14vw, 96px)/.9 var(--font-ui); letter-spacing: -0.04em; color: #f6e7c2; }
+.mu-copy p { color: #e6dccb; font-size: 17px; }
+.mu-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 500 12px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: #c9b48a; }
+.mu .btn-primary { background: var(--gold); color: #1b1206; }
+.mu .btn-primary:hover { background: #e8b75a; }
+
+/* ---------- Project row ---------- */
+.track { display: grid; grid-auto-flow: column; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: var(--gutter-l); padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-block: 14px 22px; scrollbar-width: none; overscroll-behavior-x: contain; }
+.track::-webkit-scrollbar { display: none; }
+.track > * { scroll-snap-align: start; min-width: 0; }
+.track-proj { grid-auto-columns: 78%; }
+@media (min-width: 600px) { .track-proj { grid-auto-columns: 44%; } }
+@media (min-width: 1100px) { .track-proj { grid-auto-columns: 31.8%; } }
+.proj { display: grid; gap: 14px; text-align: left; border: 0; background: none; color: inherit; padding: 0; cursor: pointer; width: 100%; }
+.proj-art { position: relative; aspect-ratio: 16 / 10; border-radius: var(--r-m); overflow: hidden; display: grid; place-items: center; transition: transform .45s var(--ease), box-shadow .45s var(--ease); transform-style: preserve-3d; }
+.proj:hover .proj-art, .proj:focus-visible .proj-art { box-shadow: 0 30px 60px rgba(0,0,0,.6); }
+.proj-info { display: grid; gap: 2px; }
+.proj-info strong { font-size: 18px; }
+.proj-info span { color: var(--mist); font-size: 14px; }
+.art-mu { background: radial-gradient(80% 100% at 70% 30%, #33230c, var(--mu-ground)); border: 1px solid rgba(217,164,65,.3); }
+.art-mu .g { font: 700 150px/1 var(--font-jp); color: var(--gold); text-shadow: 0 0 40px rgba(240,169,43,.35); }
+.art-mu .w { position: absolute; left: 18px; bottom: 14px; font: 800 26px var(--font-ui); color: #f6e7c2; letter-spacing: -0.03em; }
+.art-cz { background: radial-gradient(70% 90% at 30% 20%, rgba(226,112,30,.55), transparent 60%), radial-gradient(70% 90% at 90% 90%, rgba(47,74,53,.9), transparent 60%), #0b0b0c; }
+.art-cz svg { width: 44%; color: var(--paper); filter: drop-shadow(0 10px 30px rgba(0,0,0,.5)); }
+.art-next { border: 1.5px dashed rgba(255,255,255,.22); background: repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 10px, transparent 10px 20px); }
+.art-next svg { width: 64px; height: 64px; color: var(--mist); }
+
+/* ---------- Systems (Inside Mu) ---------- */
+.systems { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+@media (min-width: 900px) { .systems { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.sys { border-radius: var(--r-m); padding: 22px; display: grid; gap: 14px; align-content: start; background: linear-gradient(180deg, #121014, #0b0a0c); border: 1px solid var(--line); transition: border-color .3s, transform .4s var(--ease); }
+.sys:hover { border-color: rgba(217,164,65,.45); transform: translateY(-4px); }
+.sys .ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: rgba(217,164,65,.12); color: var(--gold); }
+.sys .ico svg { width: 28px; height: 28px; transition: transform .5s var(--ease); }
+.sys:hover .ico svg { transform: rotate(-8deg) scale(1.1); }
+.sys h3 { font-size: 19px; }
+.sys p { color: var(--mist); font-size: 15px; }
+.sys code { font: 500 12px var(--font-mono); color: #cdb98d; }
+
+/* ---------- Plans (iMessage meme, white) ---------- */
+.plans { background: var(--snow); color: var(--graphite); padding-block: 80px 88px; overflow: hidden; }
+.chat { display: grid; justify-items: end; gap: 8px; max-width: 760px; margin-inline: auto; min-height: 92px; }
+.bubble { position: relative; background: var(--imsg); color: #fff; font: 600 clamp(24px, 6vw, 40px)/1.15 var(--font-ui); letter-spacing: -0.02em; padding: 14px 24px 16px; border-radius: 28px; max-width: 90%; }
+.bubble::after { content: ""; position: absolute; right: -6px; bottom: 0; width: 22px; height: 22px; background: var(--imsg); border-bottom-left-radius: 16px 14px; clip-path: polygon(0 0, 100% 100%, 0 100%); }
+.typing { display: inline-flex; gap: 5px; background: #e9e9eb; padding: 14px 18px; border-radius: 22px; }
+.typing i { width: 9px; height: 9px; border-radius: 50%; background: #8e8e93; animation: dot 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 0%, 60%, 100% { opacity: .35; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
+.read { font: 500 12px var(--font-ui); color: var(--slate); }
+.plans h2 { max-width: 760px; margin: 40px auto 28px; font-size: clamp(40px, 10vw, 72px); font-weight: 800; letter-spacing: -0.05em; }
+.plan-grid { max-width: 960px; margin-inline: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 18px; }
+@media (min-width: 900px) { .plan-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.plan { display: grid; gap: 14px; justify-items: center; text-align: center; }
+.plan .obj { height: 150px; width: 100%; display: grid; place-items: center; }
+.plan .obj img { max-height: 140px; width: auto; max-width: 100%; filter: drop-shadow(0 18px 18px rgba(0,0,0,.18)); transition: transform .6s var(--ease); }
+.plan:hover .obj img { transform: translateY(-8px) rotate(-3deg) scale(1.04); }
+.plan p { font-size: 16px; line-height: 1.3; font-weight: 500; max-width: 16ch; }
+.mrr { width: min(100%, 210px); background: #fff; border-radius: 16px; padding: 14px 14px 10px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 30px rgba(0,0,0,.12); text-align: left; display: grid; gap: 4px; }
+.mrr .top { display: flex; justify-content: space-between; align-items: center; font: 600 12px var(--font-ui); color: var(--slate); }
+.mrr .chip { background: #e3f6e8; color: #1c7c3a; border-radius: 8px; padding: 2px 7px; font-size: 11px; }
+.mrr .val { font: 700 26px var(--font-ui); letter-spacing: -0.02em; color: var(--graphite); font-variant-numeric: tabular-nums; }
+.mrr svg { width: 100%; height: 54px; }
+.mrr .solid { stroke: var(--imsg); stroke-width: 2.5; fill: none; }
+.mrr .dash { stroke: var(--imsg); stroke-width: 2.5; fill: none; stroke-dasharray: 5 6; opacity: .55; stroke-dashoffset: 200; }
+.plans.in .mrr .dash { animation: grow 2.4s .4s var(--ease) forwards; }
+@keyframes grow { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+
+/* ---------- After hours (night + iOS focus modes) ---------- */
+.after { position: relative; overflow: hidden; color: var(--paper); }
+.after-bg { position: absolute; inset: 0; }
+.after-bg img { width: 100%; height: 100%; object-fit: cover; transition: filter .8s var(--ease), transform 1.2s var(--ease); }
+.after-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.55) 55%, rgba(5,5,5,.25) 100%); }
+@media (max-width: 899px) { .after-shade { background: linear-gradient(180deg, rgba(5,5,5,.35) 0%, rgba(5,5,5,.88) 60%); } }
+.after .wrap { position: relative; z-index: 1; padding-block: 96px; display: grid; gap: 28px; }
+.after h2 { font-size: clamp(34px, 8.6vw, 64px); font-weight: 800; letter-spacing: -0.045em; line-height: .98; max-width: 12ch; }
+.after .now { color: #e6e1dc; font-size: 17px; max-width: 40ch; min-height: 3em; }
+.focus { display: grid; gap: 10px; max-width: 380px; }
+.focus button { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 60px; padding: 0 18px; border-radius: 999px; color: var(--paper); text-align: left; cursor: pointer; transition: background .35s var(--ease), color .35s; }
+.focus button svg { width: 22px; height: 22px; }
+.focus button b { font-weight: 600; font-size: 16px; display: block; }
+.focus button small { display: block; font-size: 12px; color: var(--mist); }
+.focus button .dots { font-size: 18px; letter-spacing: 2px; color: var(--mist); }
+.focus button[aria-pressed="true"] { background: rgba(232,232,255,.92); color: #1d1d1f; }
+.focus button[aria-pressed="true"] small, .focus button[aria-pressed="true"] .dots { color: #48484f; }
+.after[data-mode="sleep"] .after-bg img { filter: brightness(.45) saturate(.6); }
+.after[data-mode="workout"] .after-bg img { filter: saturate(1.4) contrast(1.1); transform: scale(1.04); }
+.after[data-mode="dnd"] .after-bg img { filter: grayscale(1) brightness(.7); }
+
+/* ---------- Kit Vibecoder (white collage) ---------- */
+.kit { background: #f5f5f7; color: var(--graphite); padding-block: 80px 96px; overflow: hidden; }
+.kit h2 { text-align: center; font-size: clamp(44px, 11vw, 88px); font-weight: 800; letter-spacing: -0.05em; line-height: .95; }
+.kit .sub { text-align: center; color: var(--slate); margin-top: 10px; font-size: 17px; }
+.kit-grid { margin: 44px auto 0; max-width: 1000px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (min-width: 900px) { .kit-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; grid-auto-flow: dense; } .k-tall { grid-row: span 2; } .k-wide { grid-column: span 2; } }
+.k { position: relative; border-radius: 26px; background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 18px 40px rgba(0,0,0,.06); display: grid; place-items: center; padding: 18px 18px 46px; min-height: 190px; overflow: hidden; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.k:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(0,0,0,.12); }
+.k img { max-height: 150px; max-width: 86%; width: auto; filter: drop-shadow(0 18px 16px rgba(0,0,0,.18)); transition: transform .7s var(--ease); }
+.k-tall img { max-height: 300px; }
+.k:hover img { transform: scale(1.06) rotate(-3deg); }
+.k .lbl { position: absolute; left: 18px; bottom: 14px; right: 18px; display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+.k .lbl b { font-weight: 600; }
+.k .lbl span { color: var(--slate); }
+.k-ui { background: #1c1c1e; color: #f5f5f7; place-items: stretch; align-content: center; gap: 10px; padding: 22px; }
+.k-ui .lbl span { color: #a1a1a6; }
+.k-ui .pill { display: flex; align-items: center; gap: 10px; background: rgba(232,232,255,.92); color: #1d1d1f; border-radius: 999px; padding: 12px 16px; font-weight: 600; font-size: 15px; }
+.k-ui .pill svg { width: 20px; height: 20px; }
+.k-ui .pill small { margin-left: auto; color: #48484f; font-weight: 500; }
+.k-ui pre { margin: 0; font: 400 13px/1.6 var(--font-mono); color: #d1d1d6; white-space: pre-wrap; }
+.k-ui pre b { color: #30d158; font-weight: 500; }
+
+/* ---------- Animated logo ---------- */
+.logo-anim { overflow: visible; }
+.logo-anim .l-stub { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw .6s .2s var(--ease) forwards; }
+.logo-anim .l-ring { stroke-dasharray: 264; stroke-dashoffset: 264; animation: draw .9s .55s var(--ease) forwards; transform-box: view-box; transform-origin: 118px 100px; transform: rotate(180deg); }
+.logo-anim .l-dot { fill: var(--amber); opacity: 0; transform-box: view-box; transform-origin: 118px 100px; animation: dotin .3s 1.4s forwards, orbit 6s 1.4s linear infinite; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes dotin { to { opacity: 1; } }
+@keyframes orbit { to { transform: rotate(360deg); } }
+a:hover .logo-anim .l-ring, a:focus-visible .logo-anim .l-ring { animation: draw .9s .55s var(--ease) forwards, pulse .6s var(--ease); }
+a:hover .logo-anim .l-dot { animation-duration: .3s, 1.2s; }
+@keyframes pulse { 0%, 100% { transform: rotate(180deg) scale(1); } 50% { transform: rotate(180deg) scale(1.12); } }
+
+/* ---------- Intro (auto, no click) ---------- */
+.intro { position: fixed; inset: 0; z-index: 200; background: var(--ink); display: grid; place-items: center; transition: opacity .6s var(--ease), transform .8s var(--ease); }
+.intro.out { opacity: 0; transform: translateY(-4%); pointer-events: none; }
+.intro-inner { display: grid; justify-items: center; gap: 22px; }
+.intro svg { width: 120px; height: 120px; color: var(--paper); }
+.intro svg .l-ring, .intro svg .l-stub { stroke: currentColor; }
+.intro .cmd { font: 400 15px var(--font-mono); color: var(--mist); min-height: 1.5em; }
+.intro .cmd b { color: var(--amber); font-weight: 500; }
+.intro .word { font: 800 clamp(34px, 9vw, 56px)/1 var(--font-ui); letter-spacing: -0.04em; opacity: 0; transform: translateY(10px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.intro .word.on { opacity: 1; transform: none; }
+.intro .word span { color: transparent; -webkit-text-stroke: 1.2px var(--paper); }
+
+/* ---------- Language switch ---------- */
+.lang { position: fixed; z-index: 60; top: calc(14px + env(safe-area-inset-top, 0px)); right: calc(var(--gutter-r) + 2px); display: flex; gap: 2px; padding: 4px; border-radius: 999px; }
+.lang button { min-width: 44px; min-height: 36px; border: 0; border-radius: 999px; background: transparent; color: var(--mist); font: 600 13px var(--font-ui); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+
+/* ---------- Locked project ---------- */
+.proj.locked { cursor: default; }
+.art-locked { background: radial-gradient(80% 100% at 70% 30%, #33230c, var(--mu-ground)); border: 1px solid rgba(217,164,65,.25); }
+.art-locked .g { font: 700 150px/1 var(--font-jp); color: var(--gold); filter: blur(10px); opacity: .45; }
+.art-locked .lock { position: absolute; inset: 0; display: grid; place-items: center; }
+.art-locked .lock span { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; color: var(--gold); }
+.art-locked .lock svg { width: 26px; height: 26px; }
+.proj.locked:hover .lock span { animation: shake .45s var(--ease); }
+@keyframes shake { 20% { transform: rotate(-10deg); } 40% { transform: rotate(8deg); } 60% { transform: rotate(-5deg); } 80% { transform: rotate(3deg); } }
+@media (prefers-reduced-motion: reduce) { .logo-anim .l-stub, .logo-anim .l-ring { stroke-dashoffset: 0; } .logo-anim .l-dot { opacity: 1; } }
+
+/* ---------- About ---------- */
+.about { padding-block: 80px 40px; overflow: hidden; }
+.about-grid { display: grid; gap: 32px; align-items: center; }
+.about-art { position: relative; aspect-ratio: 1; max-width: 500px; width: 100%; justify-self: center; margin: 0; perspective: 900px; }
+.av-btn { all: unset; position: absolute; inset: 0; cursor: pointer; border-radius: 50%; }
+.av-btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 8px; }
+.av-stage { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .5s var(--ease); }
+.av-disc { position: absolute; inset: 12% 10% 6% 10%; border-radius: 50%; background:
+  radial-gradient(60% 60% at 30% 25%, rgba(255,255,255,.35), transparent 60%),
+  linear-gradient(160deg, #f0a92b 0%, #e2701e 40%, #c8401f 100%);
+  box-shadow: inset 0 -30px 60px rgba(0,0,0,.25), 0 40px 80px rgba(200,64,31,.25); transform: translateZ(0); }
+.av-ring { position: absolute; inset: 6% 4% 0 4%; width: 92%; height: 94%; overflow: visible; transform: translateZ(10px); }
+.av-ring circle { animation: spin 40s linear infinite; transform-origin: 50% 50%; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.av-img { position: absolute; left: 4%; right: 4%; bottom: 6%; transform: translateZ(60px);
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% 60% no-repeat, radial-gradient(circle at 50% 52.5%, #000 49.6%, transparent 50%) bottom / 100% 100% no-repeat;
+  mask: linear-gradient(#000 0 0) top / 100% 60% no-repeat, radial-gradient(circle at 50% 52.5%, #000 49.6%, transparent 50%) bottom / 100% 100% no-repeat; }
+.av-img img { width: 100%; display: block; animation: breathe 5s ease-in-out infinite; transform-origin: 50% 100%; filter: drop-shadow(0 18px 24px rgba(0,0,0,.35)); }
+@keyframes breathe { 50% { transform: scaleY(1.012) translateY(-1px); } }
+.av-hop .av-img img { animation: hop .6s var(--ease); }
+@keyframes hop { 30% { transform: translateY(-14px) scaleY(1.03); } 60% { transform: translateY(2px) scaleY(.98); } }
+.av-glow { position: absolute; left: 6%; bottom: 8%; width: 46%; height: 34%; border-radius: 50%; background: radial-gradient(closest-side, rgba(160,200,255,.45), transparent); filter: blur(10px); transform: translateZ(70px); mix-blend-mode: screen; animation: flicker 4s ease-in-out infinite; pointer-events: none; }
+@keyframes flicker { 0%, 100% { opacity: .55; } 40% { opacity: .85; } 42% { opacity: .5; } 60% { opacity: .8; } }
+.orbit { --orb: min(40vw, 240px); position: absolute; inset: 0; transform: translateZ(90px); animation: spin 26s linear infinite; pointer-events: none; }
+.about-art:hover .orbit, .about-art:focus-within .orbit { animation-duration: 9s; }
+.orbit > span { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.orbit > span > * { position: absolute; transform: translate(-50%, -50%); animation: spin 26s linear infinite reverse; white-space: nowrap; }
+.about-art:hover .orbit > span > *, .about-art:focus-within .orbit > span > * { animation-duration: 9s; }
+.orbit .o1 { transform: rotate(0deg) translate(var(--orb)) rotate(-0deg); }
+.orbit .o2 { transform: rotate(72deg) translate(var(--orb)) rotate(-72deg); }
+.orbit .o3 { transform: rotate(144deg) translate(var(--orb)) rotate(-144deg); }
+.orbit .o4 { transform: rotate(216deg) translate(var(--orb)) rotate(-216deg); }
+.orbit .o5 { transform: rotate(288deg) translate(var(--orb)) rotate(-288deg); }
+.chip-code { font: 500 13px var(--font-mono); color: var(--paper); padding: 8px 12px; border-radius: 12px; }
+.chip-node { width: 34px; height: 34px; color: var(--amber); }
+.chip-img { width: 40px; filter: drop-shadow(0 8px 10px rgba(0,0,0,.5)); }
+.av-bubble { position: absolute; right: 2%; top: 4%; transform: translateZ(120px) scale(.6); transform-origin: 0 100%; opacity: 0; background: var(--imsg); color: #fff; font: 600 16px/1.25 var(--font-ui); padding: 11px 16px; border-radius: 20px; max-width: 220px; transition: opacity .3s var(--ease), transform .4s var(--ease); pointer-events: none; z-index: 3; }
+.av-bubble::after { content: ""; position: absolute; left: -5px; bottom: 0; width: 18px; height: 18px; background: var(--imsg); clip-path: polygon(100% 0, 100% 100%, 0 100%); border-bottom-right-radius: 14px; }
+.av-bubble.on { opacity: 1; transform: translateZ(120px) scale(1); }
+.av-bubble .typing { background: transparent; padding: 2px 0; }
+.av-bubble .typing i { background: rgba(255,255,255,.85); }
+.burst { position: absolute; left: 28%; top: 70%; width: 18px; height: 18px; color: var(--amber); pointer-events: none; transform: translateZ(100px); animation: burst .9s var(--ease) forwards; }
+@keyframes burst { to { transform: translate(var(--bx), var(--by)) translateZ(100px) rotate(var(--br)) scale(.4); opacity: 0; } }
+.av-hint { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); font: 500 12px var(--font-mono); color: var(--mist); letter-spacing: .06em; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .orbit { display: none; } }
+@media (max-width: 899px) { .about-art { margin-bottom: 36px; } }
+.about-copy { display: grid; gap: 20px; min-width: 0; }
+.about h2 { font-size: clamp(30px, 7.4vw, 52px); line-height: 1.02; font-weight: 800; letter-spacing: -0.035em; }
+.about .lead { color: #d5d1cd; font-size: 18px; max-width: 52ch; }
+.pillars { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+.pillars li { display: grid; grid-template-columns: 40px 110px minmax(0, 1fr); gap: 12px; align-items: center; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.pillars svg { width: 24px; height: 24px; color: var(--amber); }
+.pillars span { color: var(--mist); }
+@media (min-width: 900px) { .about-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; } }
+
+/* ---------- Connect ---------- */
+.connect { position: relative; padding-block: 80px; overflow: hidden; background: #0b0807; }
+.connect .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .75; }
+.connect .b1 { width: 420px; height: 420px; background: var(--maple); left: -120px; top: 10%; animation: drift 18s ease-in-out infinite; }
+.connect .b2 { width: 360px; height: 360px; background: var(--amber); right: -80px; top: 35%; animation: drift 22s ease-in-out infinite reverse; }
+.connect .b3 { width: 300px; height: 300px; background: var(--pine); left: 30%; bottom: -120px; animation: drift 26s ease-in-out infinite; }
+@keyframes drift { 50% { transform: translate(60px, -40px) scale(1.1); } }
+.connect canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.connect .wrap { position: relative; z-index: 1; display: grid; gap: 22px; }
+.connect h2 { font-size: clamp(28px, 7vw, 44px); font-weight: 800; letter-spacing: -0.03em; }
+.connect .sub { color: #f0e9e1; max-width: 46ch; }
+.cc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; max-width: 560px; }
+.tile { border-radius: var(--r-l); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; aspect-ratio: 1; color: var(--paper); transition: transform .3s var(--ease), background .3s; }
+.tile:hover { background: var(--glass-strong); }
+.tile:active { transform: scale(.96); }
+.tile svg { width: 26px; height: 26px; }
+.tile .t { font-size: 15px; font-weight: 600; line-height: 1.2; }
+.tile .h { font-size: 13px; color: #ece5dd; }
+.tile.wide { grid-column: span 2; aspect-ratio: auto; }
+.tile.big { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.tile.big svg { width: 40px; height: 40px; }
+.tile.big .t { font-size: 20px; }
+.tile:not(.wide):not(.big) .h { display: none; }
+/* brand gradients, glass highlight kept on top */
+.tile.glass { border-color: rgba(255,255,255,.28); }
+.tile[data-link="instagram"] { background: linear-gradient(225deg, #feda75 0%, #fa7e1e 22%, #d62976 50%, #962fbf 76%, #4f5bd5 100%); }
+.tile[data-link="tiktok"] { background: linear-gradient(135deg, #25f4ee 0%, #0b0b0b 38%, #0b0b0b 62%, #fe2c55 100%); }
+.tile[data-link="youtube"] { background: linear-gradient(160deg, #ff3b3b 0%, #e00000 45%, #9b0000 100%); }
+.tile[data-link="x"] { background: linear-gradient(160deg, #3a3a3c 0%, #000 100%); }
+.tile[data-link="linktree"] { background: linear-gradient(160deg, #2fbf5a 0%, #12752f 100%); }
+.tile[data-link]:hover { filter: brightness(1.08) saturate(1.1); }
+@media (max-width: 420px) { .tile:not(.wide):not(.big) .t { font-size: 13px; } }
+
+/* ---------- Letter (café) ---------- */
+.letter { background: var(--crema); color: var(--espresso); padding-block: 72px 88px; overflow: hidden; }
+.letter-grid { display: grid; gap: 28px; align-items: center; }
+.letter .eyebrow { color: #9a3a16; }
+.letter h2 { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(40px, 10vw, 72px); line-height: 1; letter-spacing: -0.02em; }
+.letter .lead { font-size: 18px; color: var(--roast); max-width: 44ch; }
+.cup { position: relative; width: min(150px, 42%); justify-self: center; }
+.cup img { width: 100%; filter: drop-shadow(0 26px 26px rgba(42,27,19,.3)); }
+.steam { position: absolute; left: 50%; top: 10%; width: 60%; height: 70%; transform: translate(-50%, -80%); }
+.steam path { stroke: rgba(107,74,53,.45); stroke-width: 3; fill: none; stroke-linecap: round; animation: steam 4s ease-in-out infinite; opacity: 0; }
+.steam path:nth-child(2) { animation-delay: 1.3s; } .steam path:nth-child(3) { animation-delay: 2.6s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(20px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-20px); } }
+.form { display: grid; gap: 12px; min-width: 0; }
+.form label { font-size: 14px; font-weight: 600; }
+.field { display: flex; flex-wrap: wrap; gap: 8px; padding: 6px; border-radius: 999px; background: rgba(255,255,255,.55); border: 1px solid rgba(42,27,19,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 10px 30px rgba(42,27,19,.08); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.field input { flex: 1 1 180px; min-width: 0; min-height: 48px; border: 0; background: transparent; padding: 0 16px; font: 500 17px var(--font-ui); color: var(--espresso); }
+.field input::placeholder { color: #8a7362; }
+.field input:focus { outline: none; }
+.field:focus-within { outline: 3px solid #b5541b; outline-offset: 3px; }
+.field button { background: var(--espresso); color: var(--crema); }
+.field button:hover { background: #3b281d; }
+.form .note { font-size: 13px; color: var(--roast); }
+.form .status { font-size: 15px; font-weight: 600; min-height: 1.5em; }
+.form .status.err { color: #9b1c1c; }
+.form .status.ok { color: #1f5130; }
+@media (min-width: 900px) { .letter-grid { grid-template-columns: minmax(0, 1fr) 220px minmax(0, 1fr); gap: 48px; } .cup { width: 100%; } }
+
+footer { padding-block: 40px calc(120px + env(safe-area-inset-bottom, 0px)); color: var(--mist); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+footer .brand { display: flex; align-items: center; gap: 10px; color: var(--paper); font-weight: 600; }
+footer svg { width: 28px; height: 28px; }
+@media (min-width: 900px) { footer { padding-block: 48px; } }
+
+/* ---------- Project sheet (Netflix "More info", iOS sheet) ---------- */
+dialog.sheet { width: min(760px, 100%); max-height: min(92svh, 900px); margin: auto auto 0; padding: 0; border: 0; border-radius: 30px 30px 0 0; background: #0f0d0b; color: var(--paper); overflow: auto; box-shadow: 0 -20px 80px rgba(0,0,0,.6); }
+@media (min-width: 760px) { dialog.sheet { margin: auto; border-radius: 30px; } }
+dialog.sheet::backdrop { background: rgba(0,0,0,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+dialog.sheet[open] { animation: sheet .45s var(--ease); }
+@keyframes sheet { from { transform: translateY(40px); opacity: 0; } }
+.sheet-art { position: relative; height: 240px; background: radial-gradient(90% 120% at 80% 20%, #3a280e, var(--mu-ground)); display: grid; place-items: center; overflow: hidden; }
+.sheet-art .g { font: 700 220px/1 var(--font-jp); color: var(--gold); opacity: .9; }
+.sheet-close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: var(--paper); cursor: pointer; z-index: 2; }
+.sheet-close svg { width: 18px; height: 18px; }
+.sheet-body { padding: 24px clamp(18px, 5vw, 36px) 36px; display: grid; gap: 20px; }
+.sheet-body h2 { font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #f6e7c2; }
+.sheet-body > p { color: #ded6c8; font-size: 17px; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 600px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.facts div { border-top: 1px solid rgba(217,164,65,.3); padding-top: 10px; }
+.facts dt { font: 500 11px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: #a8936a; }
+.facts dd { margin: 4px 0 0; font-weight: 600; }
+.sheet-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sheet-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: start; }
+.sheet-list svg { width: 24px; height: 24px; color: var(--gold); margin-top: 2px; }
+.sheet-list b { display: block; }
+.sheet-list span { color: var(--mist); font-size: 15px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .mu-slash path { stroke-dashoffset: 0; }
+}
+</style>
+
+<!-- shared icon symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-logo" viewBox="0 0 200 200"><line x1="38" y1="100" x2="76" y2="100" stroke="currentColor" stroke-width="16"/><circle cx="118" cy="100" r="42" fill="none" stroke="currentColor" stroke-width="16"/></symbol>
+  <symbol id="i-sword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5L20.5 3.5 20.5 9.5 9 21 3 15z"/><path d="M6 12l6 6"/><path d="M4 20l2-2"/></symbol>
+  <symbol id="i-combo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.2 6.3L20.5 8l-5 4.3L17.5 19 12 15.2 6.5 19l2-6.7L3.5 8l6.3.3z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 3a9 9 0 100 18c1.2 0 1.8-.8 1.8-1.7 0-1.4-1.2-1.7-1.2-2.9 0-1 .8-1.6 1.8-1.6H17a4 4 0 004-4C21 6.4 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10.5" cy="7" r="1.2" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-term" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 16l4-5 4 3 6-8"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4 0 7-2.7 7-6.6 0-3.7-2.6-6-4.6-8.4-.4 2.2-1.6 3.4-3 4C11.6 7 10 4.6 8 3c.3 3.6-3 6.2-3 11.4C5 18.3 8 21 12 21z"/></symbol>
+  <symbol id="i-git" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M2 12h6.8M15.2 12H22"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 00-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></symbol>
+  <symbol id="i-run" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="4.5" r="2"/><path d="M6 21l3-6 3 2 1-5 3 3h3M9 9l3-2 2 1"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></symbol>
+</svg>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<nav class="topnav glass" aria-label="Main">
+  <a class="brand" href="#top" aria-label="Commit Zero, home"><svg class="logo-anim" viewBox="0 0 200 200" aria-hidden="true"><line class="l-stub" x1="38" y1="100" x2="76" y2="100" stroke="currentColor" stroke-width="16"/><circle class="l-ring" cx="118" cy="100" r="42" fill="none" stroke="currentColor" stroke-width="16"/><circle class="l-dot" cx="118" cy="46" r="9"/></svg></a>
+  <a href="#top" data-nav="top" aria-current="true" data-i18n="nav.home">Home</a>
+  <a href="#projects" data-nav="projects" data-i18n="nav.projects">Projects</a>
+  <a href="#about" data-nav="about" data-i18n="nav.about">About</a>
+  <a href="#connect" data-nav="connect" data-i18n="nav.connect">Connect</a>
+  <a class="cta" href="#letter" data-nav="letter" data-i18n="nav.subscribe">Subscribe</a>
+</nav>
+<div class="lang glass" role="group" aria-label="Language">
+  <button type="button" data-lang="en" aria-pressed="true">EN</button>
+  <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+</div>
+<nav class="tabbar glass" aria-label="Main">
+  <a href="#top" data-nav="top" aria-current="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-git"/></svg><span data-i18n="nav.home">Home</span></a>
+  <a href="#projects" data-nav="projects"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-menu"/></svg><span data-i18n="nav.projects">Projects</span></a>
+  <a href="#connect" data-nav="connect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" stroke-linecap="round"/></svg><span data-i18n="nav.connect">Connect</span></a>
+  <a href="#letter" data-nav="letter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg><span data-i18n="nav.letter">Letter</span></a>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="graph" aria-hidden="true"></canvas>
+  <div class="float-obj fo-kbd" data-depth="0.06" aria-hidden="true"><img src="media/kit-keyboard.webp" alt=""></div>
+  <div class="float-obj fo-can" data-depth="0.12" aria-hidden="true"><img src="media/kit-can.webp" alt=""></div>
+  <div class="hero-fade" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow" data-i18n="hero.eyebrow">commit.zero · building in public</p>
+      <h1 data-i18n="hero.title">Every project starts at commit <span class="z">zero.</span></h1>
+      <p class="synopsis" data-i18n="hero.sub">Games, software and small businesses. Here's what I'm building, how it's going and what I learn along the way.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#projects"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-menu"/></svg><span data-i18n="hero.cta1">See the projects</span></a>
+        <a class="btn btn-glass glass" href="#letter"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg><span data-i18n="hero.cta2">Get the letter</span></a>
+      </div>
+    </div>
+    <div class="term glass" role="img" aria-label="Terminal showing the latest commits">
+      <div class="term-bar" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-term"/></svg>~/commit-zero — git log --oneline</div>
+      <pre id="log" aria-hidden="true"></pre>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<main id="content">
+  <section class="plans" id="plans" aria-labelledby="plans-title">
+    <div class="wrap">
+      <div class="chat" aria-live="polite">
+        <span class="typing" id="typing" aria-hidden="true"><i></i><i></i><i></i></span>
+        <p class="bubble" id="bubble" hidden data-i18n="plans.bubble">sorry i have plans.</p>
+        <span class="read" id="read" hidden data-i18n="plans.read">Delivered</span>
+      </div>
+      <h2 id="plans-title" data-i18n="plans.title">the plans:</h2>
+      <div class="plan-grid">
+        <div class="plan"><div class="obj"><img src="media/kit-laptop.webp" alt="Laptop"></div><p data-i18n="plans.p1">Build + ship cool stuff</p></div>
+        <div class="plan"><div class="obj"><img src="media/kit-espresso.webp" alt="Glass of espresso"></div><p data-i18n="plans.p2">Drink an unhealthy amount of coffee</p></div>
+        <div class="plan"><div class="obj">
+          <div class="mrr" role="img" aria-label="Revenue card: MRR zero dollars today, with a dashed line showing the growth still to come">
+            <div class="top"><span>MRR</span><span class="chip" data-i18n="plans.soon">↑ soon</span></div>
+            <div class="val">$0.00</div>
+            <svg viewBox="0 0 200 54" preserveAspectRatio="none" aria-hidden="true"><path class="solid" d="M0 50 L70 50"/><path class="dash" d="M70 50 C110 48, 130 30, 150 24 S 185 6, 200 4"/></svg>
+          </div></div><p data-i18n="plans.p3">Make it grow from zero</p></div>
+        <div class="plan"><div class="obj"><img src="media/kit-dumbbells.webp" alt="Pair of dumbbells"></div><p data-i18n="plans.p4">Lift heavy</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="projects" aria-labelledby="proj-title">
+    <div class="wrap">
+      <div class="sec-head"><div><h2 id="proj-title" data-i18n="proj.title">Projects</h2><p data-i18n="proj.sub">What's live, what's next and what's still locked.</p></div></div>
+    </div>
+    <ul class="track track-proj" role="list" style="list-style:none;margin:0" aria-label="All projects">
+      <li><button class="proj" type="button" data-open="sheet-cz" data-tilt>
+        <span class="proj-art art-cz"><svg aria-hidden="true" viewBox="0 0 200 200"><use href="#i-logo"/></svg></span>
+        <span class="proj-info"><strong>Commit Zero</strong><span data-i18n="proj.cz">Brand, logo and this site</span></span></button></li>
+      <li><div class="proj locked" aria-label="Mu, locked project in development">
+        <span class="proj-art art-locked"><span class="g" aria-hidden="true">無</span><span class="lock" aria-hidden="true"><span class="glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span></span></span>
+        <span class="proj-info"><strong>Mu</strong><span data-i18n="proj.mu">Locked · in development</span></span></div></li>
+      <li><div class="proj" aria-label="Next project">
+        <span class="proj-art art-next"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg></span>
+        <span class="proj-info"><strong data-i18n="proj.next">Next commit</strong><span data-i18n="proj.nextsub">The next project lands here.</span></span></div></li>
+    </ul>
+  </section>
+
+  <section class="after" id="after" data-mode="ship" aria-labelledby="after-title">
+    <div class="after-bg" aria-hidden="true"><img src="media/night.webp" alt=""></div>
+    <div class="after-shade" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="after.eyebrow">After hours</p>
+      <h2 id="after-title" data-i18n="after.title">Earbuds in. Lid open. Back to work.</h2>
+      <div class="focus" role="group" aria-label="Focus modes">
+        <button class="glass" type="button" data-mode="dnd" aria-pressed="false"><svg aria-hidden="true"><use href="#i-moon"/></svg><span><b data-i18n="after.dnd">Do Not Disturb</b><small data-i18n="after.dndsub">Silence all notifications</small></span><span class="dots" aria-hidden="true">···</span></button>
+        <button class="glass" type="button" data-mode="sleep" aria-pressed="false"><svg aria-hidden="true"><use href="#i-bed"/></svg><span><b data-i18n="after.sleep">Sleep</b></span><span class="dots" aria-hidden="true">···</span></button>
+        <button class="glass" type="button" data-mode="workout" aria-pressed="false"><svg aria-hidden="true"><use href="#i-run"/></svg><span><b data-i18n="after.workout">Workout</b></span><span class="dots" aria-hidden="true">···</span></button>
+        <button class="glass" type="button" data-mode="ship" aria-pressed="true"><svg aria-hidden="true"><use href="#i-laptop"/></svg><span><b data-i18n="after.ship">Shipping</b><small class="on" data-i18n="after.on">On</small></span><span class="dots" aria-hidden="true">···</span></button>
+      </div>
+      <p class="now" id="now" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="kit" aria-labelledby="kit-title">
+    <div class="wrap">
+      <h2 id="kit-title">Kit Vibecoder</h2>
+      <p class="sub" data-i18n="kit.sub">Black hoodie, shorts, earbuds in. Everything else fits on one desk.</p>
+      <div class="kit-grid">
+        <div class="k k-tall k-wide"><img src="media/kit-laptop.webp" alt="Laptop"><span class="lbl"><b data-i18n="kit.laptop">Laptop</b><span data-i18n="kit.laptopsub">Ships</span></span></div>
+        <div class="k"><img src="media/kit-espresso.webp" alt="Glass of espresso"><span class="lbl"><b>Espresso</b><span data-i18n="kit.double">Double</span></span></div>
+        <div class="k k-tall"><img src="media/kit-can.webp" alt="White Monster Energy Zero Ultra can"><span class="lbl"><b>Monster Ultra</b><span data-i18n="kit.zero">Zero sugar</span></span></div>
+        <div class="k"><img src="media/kit-earbuds.webp" alt="White earbuds in their case"><span class="lbl"><b data-i18n="kit.earbuds">Earbuds</b><span data-i18n="kit.always">Always in</span></span></div>
+        <div class="k k-wide"><img src="media/kit-keyboard.webp" alt="Black mechanical keyboard with a red escape key"><span class="lbl"><b data-i18n="kit.keyboard">Keyboard</b><span>75%</span></span></div>
+        <div class="k k-wide"><img src="media/kit-watch.webp" alt="Black smartwatch"><span class="lbl"><b data-i18n="kit.watch">Watch</b><span data-i18n="kit.still">Still building</span></span></div>
+        <div class="k k-ui k-tall"><span class="pill"><svg aria-hidden="true"><use href="#i-laptop"/></svg><span data-i18n="after.ship">Shipping</span><small data-i18n="after.on">On</small></span><pre>$ git push
+<b>✓</b> main → origin</pre><span class="lbl"><b data-i18n="kit.focus">Focus</b><span data-i18n="kit.real">The real kit</span></span></div>
+        <div class="k k-wide"><img src="media/kit-dumbbells.webp" alt="Pair of dumbbells"><span class="lbl"><b data-i18n="kit.dumbbells">Dumbbells</b><span data-i18n="plans.p4">Lift heavy</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <figure class="about-art" id="avatar">
+        <div class="av-stage" id="av-stage">
+          <div class="av-disc" aria-hidden="true"></div>
+          <svg class="av-ring" viewBox="0 0 240 240" aria-hidden="true"><line x1="-30" y1="128" x2="22" y2="128" stroke="var(--pumpkin)" stroke-width="2"/><circle cx="120" cy="128" r="98" fill="none" stroke="var(--pumpkin)" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/></svg>
+          <div class="av-img"><img src="media/me-memoji.webp" alt="3D cartoon of Victor in a black hoodie with an earbud in, working on a laptop"></div>
+          <div class="av-glow" aria-hidden="true"></div>
+          <div class="orbit" aria-hidden="true">
+            <span class="o1"><svg class="chip-node" viewBox="0 0 200 200"><use href="#i-logo"/></svg></span>
+            <span class="o2"><code class="chip-code glass">git push</code></span>
+            <span class="o3"><img class="chip-img" src="media/kit-espresso.webp" alt=""></span>
+            <span class="o4"><code class="chip-code glass">{ }</code></span>
+            <span class="o5"><img class="chip-img" src="media/kit-can.webp" alt="" style="width:24px"></span>
+          </div>
+        </div>
+        <p class="av-bubble" id="av-bubble" aria-live="polite"></p>
+        <button class="av-btn" id="av-btn" type="button" aria-label="Say hi to Victor"></button>
+      </figure>
+      <div class="about-copy">
+        <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+        <h2 id="about-title" data-i18n="about.title">I build quietly and show the process.</h2>
+        <p class="lead" data-i18n="about.lead">Commit Zero is where I document what I build: games, software and small businesses, plus the habits that keep them moving.</p>
+        <ul class="pillars">
+          <li><svg aria-hidden="true"><use href="#i-code"/></svg><b>Software</b><span data-i18n="about.p1">Products, automations and the tools behind them.</span></li>
+          <li><svg aria-hidden="true"><use href="#i-chart"/></svg><b data-i18n="about.b2">Business</b><span data-i18n="about.p2">What I sell, what works and what doesn't.</span></li>
+          <li><svg aria-hidden="true"><use href="#i-flame"/></svg><b data-i18n="about.b3">Discipline</b><span data-i18n="about.p3">Routines that survive a full week.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="connect" id="connect" aria-labelledby="connect-title">
+    <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
+    <canvas id="leaves" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h2 id="connect-title" data-i18n="connect.title">Follow along</h2>
+      <p class="sub" data-i18n="connect.sub">New updates land on Instagram first. Clips go to TikTok and YouTube.</p>
+      <div class="cc">
+        <a class="tile big glass" data-link="instagram" href="https://www.instagram.com/commit.zero/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+          <span><span class="t">Instagram</span><br><span class="h">@commit.zero</span></span></a>
+        <a class="tile glass" data-link="tiktok" href="https://www.tiktok.com/@commit.zero" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.2c-1.5 0-2.9-.4-4-1.2v6.3a6 6 0 11-6-6c.3 0 .6 0 .9.1v3.3a2.8 2.8 0 102 2.6V3z"/></svg>
+          <span class="t">TikTok</span></a>
+        <a class="tile glass" data-link="youtube" href="https://www.youtube.com/@commit.zero" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.6 2.6 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 002.4 7.2 27 27 0 002 12a27 27 0 00.4 4.8 2.6 2.6 0 001.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.6 2.6 0 001.8-1.8A27 27 0 0022 12a27 27 0 00-.4-4.8zM10 15V9l5.2 3z"/></svg>
+          <span class="t">YouTube</span></a>
+        <a class="tile wide glass" data-link="x" href="https://x.com/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3H21l-7 8 8.2 10h-6.4l-5-6.2L5 21H1.8l7.5-8.6L1.5 3H8l4.5 5.7zm-1.1 16h1.8L7.4 4.9H5.5z"/></svg>
+          <span><span class="t">X</span><br><span class="h" data-i18n="connect.x">Notes and threads</span></span></a>
+        <a class="tile wide glass" data-link="linktree" href="https://linktr.ee/commit.zero" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 14a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>
+          <span><span class="t" data-i18n="connect.all">All links</span><br><span class="h">linktr.ee/commit.zero</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="letter" id="letter" aria-labelledby="letter-title">
+    <div class="wrap letter-grid">
+      <div style="display:grid;gap:18px;min-width:0">
+        <p class="eyebrow" data-i18n="letter.eyebrow">The newsletter</p>
+        <h2 id="letter-title">The Sunday Commit</h2>
+        <p class="lead" data-i18n="letter.lead">One short letter every Sunday, about the length of a coffee. What I built, what broke and what I'm trying next.</p>
+      </div>
+      <div class="cup" aria-hidden="true">
+        <svg class="steam" viewBox="0 0 100 120"><path d="M30 110c-10-20 10-30 0-50s10-30 0-50"/><path d="M50 110c-10-20 10-30 0-50s10-30 0-50"/><path d="M70 110c-10-20 10-30 0-50s10-30 0-50"/></svg>
+        <img src="media/kit-espresso.webp" alt="">
+      </div>
+      <form class="form" id="letter-form" novalidate>
+        <label for="email" data-i18n="letter.label">Your email</label>
+        <div class="field">
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="letter-note letter-status">
+          <button class="btn" type="submit" data-i18n="nav.subscribe">Subscribe</button>
+        </div>
+        <p class="note" id="letter-note" data-i18n="letter.note">One email a week. Unsubscribe anytime.</p>
+        <p class="status" id="letter-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><svg class="logo-anim" viewBox="0 0 200 200" aria-hidden="true"><line class="l-stub" x1="38" y1="100" x2="76" y2="100" stroke="currentColor" stroke-width="16"/><circle class="l-ring" cx="118" cy="100" r="42" fill="none" stroke="currentColor" stroke-width="16"/><circle class="l-dot" cx="118" cy="46" r="9"/></svg>Commit Zero</a>
+    <span>© 2026 Commit Zero</span>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet-cz" aria-labelledby="sheet-cz-title">
+  <div class="sheet-art" style="background:radial-gradient(70% 90% at 30% 20%, rgba(226,112,30,.55), transparent 60%), radial-gradient(70% 90% at 90% 90%, rgba(47,74,53,.9), transparent 60%), #0b0b0c">
+    <svg viewBox="0 0 200 200" style="width:160px;color:var(--paper)" aria-hidden="true"><use href="#i-logo"/></svg>
+    <button class="sheet-close glass" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="sheet-body">
+    <h2 id="sheet-cz-title" style="color:var(--paper)">Commit Zero</h2>
+    <p data-i18n="sheet.cz">The brand behind this page. A commit node as the logo, a black and white base with autumn colors, and a site built like a streaming home screen.</p>
+    <dl class="facts">
+      <div><dt data-i18n="sheet.type">Type</dt><dd data-i18n="sheet.typev">Brand + site</dd></div>
+      <div><dt>Stack</dt><dd>HTML, CSS, JS</dd></div>
+      <div><dt>Logo</dt><dd data-i18n="sheet.logov">Commit node</dd></div>
+      <div><dt data-i18n="sheet.year">Year</dt><dd>2026</dd></div>
+    </dl>
+    <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="btn btn-glass glass" type="button" data-close data-i18n="sheet.close">Close</button></div>
+  </div>
+</dialog>
+
+<script>
+/* ---- Edit here: links and newsletter ---- */
+const CONFIG = {
+  links: {
+    instagram: "https://www.instagram.com/commit.zero/",
+    tiktok: "https://www.tiktok.com/@commit.zero",
+    youtube: "https://www.youtube.com/@commit.zero",
+    x: "",                                   // e.g. "https://x.com/yourhandle" — empty hides the tile
+    linktree: "https://linktr.ee/commit.zero"
+  },
+  newsletterEndpoint: ""                     // e.g. a Buttondown embed URL; empty = signups not open yet
+};
+const COMMITS = [
+  ["a1f3c9e", "feat(mu): combo announcer"],
+  ["7c2e01b", "feat(mu): clan join requests"],
+  ["e94d2a7", "style(mu-ui): amber and gold theme"],
+  ["5d10b8f", "feat(mu): main menu, 8 tabs"],
+  ["3b8f6d0", "feat(site): commit zero v1"],
+  ["0000000", "init: commit zero"]
+];
+
+/* ---- Translations ---- */
+const I18N = {
+  en: {
+    "nav.home": "Home", "nav.projects": "Projects", "nav.about": "About", "nav.connect": "Connect", "nav.subscribe": "Subscribe", "nav.letter": "Letter",
+    "hero.eyebrow": "commit.zero · building in public",
+    "hero.title": 'Every project starts at commit <span class="z">zero.</span>',
+    "hero.sub": "Games, software and small businesses. Here's what I'm building, how it's going and what I learn along the way.",
+    "hero.cta1": "See the projects", "hero.cta2": "Get the letter",
+    "plans.bubble": "sorry i have plans.", "plans.read": "Delivered", "plans.title": "the plans:",
+    "plans.p1": "Build + ship cool stuff", "plans.p2": "Drink an unhealthy amount of coffee", "plans.p3": "Make it grow from zero", "plans.p4": "Lift heavy", "plans.soon": "↑ soon",
+    "proj.title": "Projects", "proj.sub": "What's live, what's next and what's still locked.", "proj.cz": "Brand, logo and this site",
+    "proj.mu": "Locked · in development", "proj.next": "Next commit", "proj.nextsub": "The next project lands here.",
+    "after.eyebrow": "After hours", "after.title": "Earbuds in. Lid open. Back to work.",
+    "after.dnd": "Do Not Disturb", "after.dndsub": "Silence all notifications", "after.sleep": "Sleep", "after.workout": "Workout", "after.ship": "Shipping", "after.on": "On",
+    "mode.dnd": "Do Not Disturb: the phone is face down. Nothing gets in.", "mode.sleep": "Sleep: laptop closed. Tomorrow's commits need tonight's rest.",
+    "mode.workout": "Workout: the body is part of the stack.", "mode.ship": "Shipping: notifications off, coffee on, commits going out.",
+    "kit.sub": "Black hoodie, shorts, earbuds in. Everything else fits on one desk.", "kit.laptop": "Laptop", "kit.laptopsub": "Ships", "kit.double": "Double", "kit.zero": "Zero sugar",
+    "kit.earbuds": "Earbuds", "kit.always": "Always in", "kit.keyboard": "Keyboard", "kit.watch": "Watch", "kit.still": "Still building", "kit.focus": "Focus", "kit.real": "The real kit", "kit.dumbbells": "Dumbbells",
+    "about.eyebrow": "About", "about.title": "I build quietly and show the process.",
+    "about.lead": "Commit Zero is where I document what I build: games, software and small businesses, plus the habits that keep them moving.",
+    "about.p1": "Products, automations and the tools behind them.", "about.b2": "Business", "about.p2": "What I sell, what works and what doesn't.", "about.b3": "Discipline", "about.p3": "Routines that survive a full week.",
+    "avatar": ["hey, I'm Victor.", "building something new tonight.", "coffee number three.", "it all starts at commit zero."],
+    "connect.title": "Follow along", "connect.sub": "New updates land on Instagram first. Clips go to TikTok and YouTube.", "connect.x": "Notes and threads", "connect.all": "All links",
+    "letter.eyebrow": "The newsletter", "letter.lead": "One short letter every Sunday, about the length of a coffee. What I built, what broke and what I'm trying next.",
+    "letter.label": "Your email", "letter.note": "One email a week. Unsubscribe anytime.",
+    "letter.invalid": "Enter a valid email, like name@gmail.com.", "letter.soon": "Signups open with the first issue. Follow on Instagram to catch it.",
+    "letter.ok": "You're in. Check your inbox to confirm.", "letter.err": "That didn't go through. Try again in a minute.",
+    "sheet.cz": "The brand behind this page. A commit node as the logo, a black and white base with autumn colors, and a site built like a streaming home screen.",
+    "sheet.type": "Type", "sheet.typev": "Brand + site", "sheet.logov": "Commit node", "sheet.year": "Year", "sheet.close": "Close"
+  },
+  pt: {
+    "nav.home": "Início", "nav.projects": "Projetos", "nav.about": "Sobre", "nav.connect": "Redes", "nav.subscribe": "Assinar", "nav.letter": "Carta",
+    "hero.eyebrow": "commit.zero · construindo em público",
+    "hero.title": 'Todo projeto começa no commit <span class="z">zero.</span>',
+    "hero.sub": "Jogos, software e pequenos negócios. O que estou construindo, como está indo e o que aprendo no caminho.",
+    "hero.cta1": "Ver os projetos", "hero.cta2": "Receber a carta",
+    "plans.bubble": "foi mal, tenho planos.", "plans.read": "Entregue", "plans.title": "os planos:",
+    "plans.p1": "Construir e lançar coisas legais", "plans.p2": "Tomar uma quantidade nada saudável de café", "plans.p3": "Fazer crescer a partir do zero", "plans.p4": "Treinar pesado", "plans.soon": "↑ em breve",
+    "proj.title": "Projetos", "proj.sub": "O que está no ar, o que vem a seguir e o que ainda está trancado.", "proj.cz": "Marca, logo e este site",
+    "proj.mu": "Trancado · em desenvolvimento", "proj.next": "Próximo commit", "proj.nextsub": "O próximo projeto aparece aqui.",
+    "after.eyebrow": "Depois do expediente", "after.title": "Fone no ouvido. Tampa aberta. De volta ao trabalho.",
+    "after.dnd": "Não Perturbe", "after.dndsub": "Silenciar notificações", "after.sleep": "Sono", "after.workout": "Treino", "after.ship": "Entregando", "after.on": "Ativado",
+    "mode.dnd": "Não Perturbe: celular virado pra baixo. Nada entra.", "mode.sleep": "Sono: notebook fechado. Os commits de amanhã precisam do descanso de hoje.",
+    "mode.workout": "Treino: o corpo também faz parte da stack.", "mode.ship": "Entregando: notificações desligadas, café ligado, commits saindo.",
+    "kit.sub": "Moletom preto, bermuda, fone no ouvido. O resto cabe numa mesa só.", "kit.laptop": "Notebook", "kit.laptopsub": "Onde tudo sai", "kit.double": "Duplo", "kit.zero": "Zero açúcar",
+    "kit.earbuds": "Fones", "kit.always": "Sempre no ouvido", "kit.keyboard": "Teclado", "kit.watch": "Relógio", "kit.still": "Ainda construindo", "kit.focus": "Foco", "kit.real": "O kit de verdade", "kit.dumbbells": "Halteres",
+    "about.eyebrow": "Sobre", "about.title": "Construo em silêncio e mostro o processo.",
+    "about.lead": "A Commit Zero é onde eu documento o que construo: jogos, software e pequenos negócios, além dos hábitos que mantêm tudo andando.",
+    "about.p1": "Produtos, automações e as ferramentas por trás deles.", "about.b2": "Negócios", "about.p2": "O que eu vendo, o que funciona e o que não funciona.", "about.b3": "Disciplina", "about.p3": "Rotinas que aguentam a semana inteira.",
+    "avatar": ["e aí, sou o Victor.", "construindo algo novo hoje.", "café número três.", "tudo começa no commit zero."],
+    "connect.title": "Acompanhe", "connect.sub": "As novidades saem primeiro no Instagram. Os cortes vão pro TikTok e YouTube.", "connect.x": "Notas e threads", "connect.all": "Todos os links",
+    "letter.eyebrow": "A newsletter", "letter.lead": "Uma carta curta todo domingo, do tamanho de um café. O que eu construí, o que quebrou e o que vou testar.",
+    "letter.label": "Seu e-mail", "letter.note": "Um e-mail por semana. Cancele quando quiser.",
+    "letter.invalid": "Digite um e-mail válido, como nome@gmail.com.", "letter.soon": "As inscrições abrem com a primeira edição. Siga no Instagram pra não perder.",
+    "letter.ok": "Pronto! Confira sua caixa de entrada pra confirmar.", "letter.err": "Não deu certo. Tente de novo em um minuto.",
+    "sheet.cz": "A marca por trás desta página. Um commit como logo, base preta e branca com cores de outono, e um site montado como a tela inicial de um streaming.",
+    "sheet.type": "Tipo", "sheet.typev": "Marca + site", "sheet.logov": "Commit", "sheet.year": "Ano", "sheet.close": "Fechar"
+  }
+};
+let LANG = "en";
+try { LANG = localStorage.getItem("cz-lang") || "en"; } catch (e) {}
+const T = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.en[k];
+
+(function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hues = ["#c8401f", "#e2701e", "#f0a92b", "#3f6b4a"];
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+
+  /* language */
+  const after = document.getElementById("after"), now = document.getElementById("now");
+  function applyLang(l) {
+    LANG = I18N[l] ? l : "en"; document.documentElement.lang = LANG === "pt" ? "pt-BR" : "en";
+    document.querySelectorAll("[data-i18n]").forEach(el => { const v = T(el.dataset.i18n); if (typeof v === "string") el.innerHTML = v; });
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+    now.textContent = T("mode." + after.dataset.mode);
+    try { localStorage.setItem("cz-lang", LANG); } catch (e) {}
+  }
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => applyLang(b.dataset.lang)));
+  applyLang(LANG);
+
+  /* intro: plays once per visit, no click needed */
+  let seen = false; try { seen = sessionStorage.getItem("cz-intro") === "1"; } catch (e) {}
+  if (!reduce && !seen) {
+    const intro = document.createElement("div"); intro.className = "intro"; intro.setAttribute("aria-hidden", "true");
+    intro.innerHTML = `<div class="intro-inner"><svg class="logo-anim" viewBox="0 0 200 200"><line class="l-stub" x1="38" y1="100" x2="76" y2="100" stroke-width="12"/><circle class="l-ring" cx="118" cy="100" r="42" fill="none" stroke-width="12"/><circle class="l-dot" cx="118" cy="46" r="8"/></svg><p class="cmd" id="intro-cmd"></p><p class="word">commit <span>zero</span></p></div>`;
+    document.body.appendChild(intro); document.documentElement.style.overflow = "hidden";
+    const cmd = intro.querySelector("#intro-cmd"), full = 'git commit -m "zero"'; let n = 0;
+    setTimeout(function type() { cmd.innerHTML = '<b>$</b> ' + full.slice(0, ++n); if (n < full.length) setTimeout(type, 38); }, 900);
+    setTimeout(() => intro.querySelector(".word").classList.add("on"), 1900);
+    setTimeout(() => { intro.classList.add("out"); document.documentElement.style.overflow = ""; }, 2900);
+    setTimeout(() => intro.remove(), 3700);
+    try { sessionStorage.setItem("cz-intro", "1"); } catch (e) {}
+  }
+
+  document.querySelectorAll("[data-link]").forEach(a => {
+    const url = CONFIG.links[a.dataset.link];
+    if (url) a.href = url; else a.hidden = true;
+  });
+
+  /* terminal: git log typing */
+  const log = document.getElementById("log");
+  const lines = COMMITS.map(([h, m]) => `<span class="${h === "0000000" ? "zero" : "h"}">${h}</span> ${m}`);
+  if (reduce) { log.innerHTML = '<span class="p">$</span> git log --oneline\n' + lines.join("\n"); }
+  else {
+    let i = 0; log.innerHTML = '<span class="p">$</span> git log --oneline\n<span class="caret"></span>';
+    const tick = () => {
+      if (i >= lines.length) return;
+      log.innerHTML = '<span class="p">$</span> git log --oneline\n' + lines.slice(0, ++i).join("\n") + (i < lines.length ? '\n<span class="caret"></span>' : '\n<span class="p">$</span> <span class="caret"></span>');
+      setTimeout(tick, 420);
+    };
+    setTimeout(tick, seen ? 700 : 3200);
+  }
+
+  /* marquee */
+  const mq = document.getElementById("marquee");
+  const item = ([h, m]) => `<span><svg viewBox="0 0 24 24"><use href="#i-git"/></svg><b>${h}</b>${m}</span>`;
+  mq.innerHTML = COMMITS.map(item).join("") + COMMITS.map(item).join("");
+
+  /* hero canvas: interactive commit graph */
+  const cv = document.getElementById("graph"), g = cv.getContext("2d"), hero = document.querySelector(".hero");
+  let W, H, lanes = [], t = 0, running = true;
+  const P = { x: -999, y: -999, on: false }, R = 140;
+  function size() {
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.max(5, Math.round(H / 90));
+    lanes = Array.from({ length: n }, (_, k) => ({ y: (k + .5) * H / n, amp: 8 + Math.random() * 18, ph: Math.random() * 6, sp: .2 + Math.random() * .3,
+      nodes: Array.from({ length: 4 + (Math.random() * 4 | 0) }, () => ({ x: Math.random() * W, ox: 0, oy: 0, vx: 0, vy: 0, s: 1, c: Math.random() < .25 ? hues[Math.random() * 4 | 0] : null })) }));
+  }
+  function bend(x, y) { if (!P.on) return 0; const dx = x - P.x, dy = y - P.y, d = Math.hypot(dx, dy); if (d > R) return 0; const f = (1 - d / R); return Math.sign(dy || 1) * f * f * 46; }
+  function yAt(l, x) { const y = l.y + Math.sin(x * .004 + l.ph + t * l.sp) * l.amp; return y + bend(x, y); }
+  function draw() {
+    g.clearRect(0, 0, W, H);
+    if (P.on) { const rg = g.createRadialGradient(P.x, P.y, 0, P.x, P.y, R); rg.addColorStop(0, "rgba(240,169,43,.10)"); rg.addColorStop(1, "rgba(240,169,43,0)"); g.fillStyle = rg; g.fillRect(P.x - R, P.y - R, R * 2, R * 2); }
+    lanes.forEach((l, k) => {
+      g.beginPath(); for (let x = 0; x <= W; x += 10) { const y = yAt(l, x); x ? g.lineTo(x, y) : g.moveTo(x, y); }
+      g.strokeStyle = "rgba(255,255,255,.08)"; g.lineWidth = 1.2; g.stroke();
+      if (k < lanes.length - 1 && k % 2 === 0) {
+        const x0 = (W * ((k * .37 + t * .02) % 1)), n = lanes[k + 1];
+        g.beginPath(); g.moveTo(x0, yAt(l, x0)); g.bezierCurveTo(x0 + 60, yAt(l, x0), x0 + 60, yAt(n, x0 + 120), x0 + 120, yAt(n, x0 + 120));
+        g.strokeStyle = "rgba(255,255,255,.06)"; g.stroke();
+      }
+      l.nodes.forEach(nd => {
+        nd.x += .25 + l.sp * .4; if (nd.x > W + 20) { nd.x = -20; nd.c = Math.random() < .25 ? hues[Math.random() * 4 | 0] : null; }
+        const by = yAt(l, nd.x);
+        let fx = -nd.ox * .08, fy = -nd.oy * .08, near = 0;
+        if (P.on) { const dx = nd.x + nd.ox - P.x, dy = by + nd.oy - P.y, d = Math.hypot(dx, dy) || 1; if (d < R) { near = 1 - d / R; fx += dx / d * near * 3.2; fy += dy / d * near * 3.2; } }
+        nd.vx = (nd.vx + fx) * .82; nd.vy = (nd.vy + fy) * .82; nd.ox += nd.vx; nd.oy += nd.vy; nd.s += ((1 + near * .9) - nd.s) * .15;
+        const x = nd.x + nd.ox, y = by + nd.oy, col = nd.c || (near > .05 ? "rgba(255,255,255,.9)" : "rgba(255,255,255,.35)");
+        g.save(); g.translate(x, y); g.scale(nd.s, nd.s); g.strokeStyle = col; g.lineWidth = 2.2;
+        g.beginPath(); g.moveTo(-12, 0); g.lineTo(-5, 0); g.stroke(); g.beginPath(); g.arc(0, 0, 5, 0, Math.PI * 2); g.stroke();
+        if (nd.c || near > .2) { g.fillStyle = (nd.c || "#f0a92b") + "33"; g.beginPath(); g.arc(0, 0, 14, 0, Math.PI * 2); g.fill(); }
+        g.restore();
+      });
+    });
+    t += .016;
+  }
+  function loop() { if (running) draw(); requestAnimationFrame(loop); }
+  size(); draw(); addEventListener("resize", size);
+  if (!reduce) loop();
+  new IntersectionObserver(([e]) => running = e.isIntersecting).observe(cv);
+  hero.addEventListener("pointermove", e => { const r = cv.getBoundingClientRect(); P.x = e.clientX - r.left; P.y = e.clientY - r.top; P.on = true; if (reduce) draw(); }, { passive: true });
+  hero.addEventListener("pointerleave", () => { P.on = false; });
+
+  /* plans */
+  const plans = document.getElementById("plans");
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return; obs.disconnect(); plans.classList.add("in");
+    const show = () => { document.getElementById("typing").hidden = true; document.getElementById("bubble").hidden = false; document.getElementById("read").hidden = false; };
+    reduce ? show() : setTimeout(show, 1400);
+  }, { threshold: .3 }).observe(plans);
+
+  /* after hours: focus modes */
+  after.querySelectorAll(".focus button").forEach(b => b.addEventListener("click", () => {
+    after.querySelectorAll(".focus button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    after.dataset.mode = b.dataset.mode; now.textContent = T("mode." + b.dataset.mode);
+    after.querySelectorAll(".focus small.on").forEach(sm => sm.remove());
+    if (b.dataset.mode !== "dnd") { const sm = document.createElement("small"); sm.className = "on"; sm.dataset.i18n = "after.on"; sm.textContent = T("after.on"); b.querySelector("span b").after(sm); }
+  }));
+
+  /* hero parallax */
+  if (!reduce) addEventListener("pointermove", e => {
+    const cx = e.clientX / innerWidth - .5, cy = e.clientY / innerHeight - .5;
+    document.querySelectorAll(".float-obj").forEach(o => { const d = +o.dataset.depth * 400; o.style.translate = `${cx * d}px ${cy * d}px`; });
+  }, { passive: true });
+
+  /* Connect: falling maple leaves */
+  const lc = document.getElementById("leaves"), lg = lc.getContext("2d"); let leaves = [], lw, lh, lOn = false;
+  const leafPath = new Path2D("M0,-10 L2,-4 L8,-6 L5,0 L10,2 L4,4 L5,10 L0,6 L-5,10 L-4,4 L-10,2 L-5,0 L-8,-6 L-2,-4 Z");
+  function lSize() { lw = lc.clientWidth; lh = lc.clientHeight; lc.width = lw * dpr; lc.height = lh * dpr; lg.setTransform(dpr, 0, 0, dpr, 0, 0);
+    leaves = Array.from({ length: 18 }, () => ({ x: Math.random() * lw, y: Math.random() * lh, s: .8 + Math.random() * 1.4, r: Math.random() * 6, vr: (Math.random() - .5) * .03, vy: .4 + Math.random() * .7, c: hues[Math.random() * 3 | 0] })); }
+  function lDraw() { lg.clearRect(0, 0, lw, lh); leaves.forEach(p => { p.y += p.vy; p.x += Math.sin(p.y * .015) * .8; p.r += p.vr; if (p.y > lh + 20) { p.y = -20; p.x = Math.random() * lw; }
+      lg.save(); lg.translate(p.x, p.y); lg.rotate(p.r); lg.scale(p.s, p.s); lg.globalAlpha = .55; lg.fillStyle = p.c; lg.fill(leafPath); lg.restore(); }); }
+  lSize(); addEventListener("resize", lSize);
+  if (!reduce) { new IntersectionObserver(([e]) => lOn = e.isIntersecting).observe(lc); (function ll() { if (lOn) lDraw(); requestAnimationFrame(ll); })(); } else lDraw();
+
+  /* tilt on project cards */
+  if (!reduce) document.querySelectorAll("[data-tilt]").forEach(el => {
+    const art = el.querySelector(".proj-art");
+    el.addEventListener("pointermove", e => { const r = art.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      art.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-6px)`; });
+    el.addEventListener("pointerleave", () => art.style.transform = "");
+  });
+
+  /* glass specular */
+  document.addEventListener("pointermove", e => {
+    const gl = e.target.closest && e.target.closest(".glass"); if (!gl) return;
+    const r = gl.getBoundingClientRect();
+    gl.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100) + "%");
+    gl.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100) + "%");
+  }, { passive: true });
+
+  /* sheets */
+  let opener = null;
+  document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => { const d = document.getElementById(b.dataset.open); opener = b; d.showModal(); }));
+  document.querySelectorAll("dialog.sheet").forEach(d => {
+    d.addEventListener("click", e => { if (e.target === d || e.target.closest("[data-close]")) d.close(); });
+    d.addEventListener("close", () => opener && opener.focus());
+  });
+
+  /* avatar */
+  (function () {
+    const fig = document.getElementById("avatar"), stage = document.getElementById("av-stage"), bub = document.getElementById("av-bubble"), btn = document.getElementById("av-btn");
+    let k = 0, timer;
+    function say() {
+      const msgs = T("avatar"); clearTimeout(timer); bub.classList.add("on");
+      if (reduce) { bub.textContent = msgs[k++ % msgs.length]; return; }
+      bub.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+      timer = setTimeout(() => { bub.textContent = msgs[k++ % msgs.length]; }, 700);
+    }
+    function hush() { clearTimeout(timer); bub.classList.remove("on"); stage.style.transform = ""; }
+    fig.addEventListener("pointerenter", say); btn.addEventListener("focus", say);
+    fig.addEventListener("pointerleave", hush); btn.addEventListener("blur", hush);
+    if (!reduce) fig.addEventListener("pointermove", e => { const r = fig.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; stage.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 12}deg)`; });
+    btn.addEventListener("click", () => {
+      say(); if (reduce) return;
+      fig.classList.remove("av-hop"); void fig.offsetWidth; fig.classList.add("av-hop");
+      for (let n = 0; n < 14; n++) {
+        const b = document.createElementNS("http://www.w3.org/2000/svg", "svg"); b.setAttribute("viewBox", "0 0 200 200"); b.setAttribute("class", "burst");
+        b.innerHTML = '<use href="#i-logo"/>'; const a = Math.random() * Math.PI * 2, d = 120 + Math.random() * 160;
+        b.style.setProperty("--bx", Math.cos(a) * d + "px"); b.style.setProperty("--by", Math.sin(a) * d - 60 + "px"); b.style.setProperty("--br", (Math.random() * 720 - 360) + "deg");
+        b.style.color = hues[n % hues.length]; stage.appendChild(b); setTimeout(() => b.remove(), 950);
+      }
+    });
+  })();
+
+  /* nav current section */
+  const navLinks = document.querySelectorAll("[data-nav]");
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return; const id = en.target.id;
+    navLinks.forEach(a => a.dataset.nav === id ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current"));
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  ["top", "projects", "about", "connect", "letter"].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+
+  /* newsletter */
+  const form = document.getElementById("letter-form"), email = document.getElementById("email"), status = document.getElementById("letter-status");
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); status.className = "status";
+    if (!email.value.trim() || !email.checkValidity()) { status.textContent = T("letter.invalid"); status.classList.add("err"); email.setAttribute("aria-invalid", "true"); email.focus(); return; }
+    email.removeAttribute("aria-invalid");
+    if (!CONFIG.newsletterEndpoint) { status.textContent = T("letter.soon"); return; }
+    try { const body = new FormData(); body.append("email", email.value.trim());
+      const res = await fetch(CONFIG.newsletterEndpoint, { method: "POST", body }); if (!res.ok) throw 0;
+      status.textContent = T("letter.ok"); status.classList.add("ok"); form.reset();
+    } catch { status.textContent = T("letter.err"); status.classList.add("err"); }
+  });
+})();
+</script>
+
+</body>
+</html>
