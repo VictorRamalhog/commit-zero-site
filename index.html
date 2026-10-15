@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#050505">
 <meta property="og:title" content="Commit Zero">
-<meta property="og:description" content="Software, business and discipline. The projects I'm building, in public.">
+<meta property="og:description" content="Sites, systems and automations for businesses. Start a project on Instagram @commit.zero.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='44' fill='%230a0a0a'/%3E%3Cline x1='38' y1='100' x2='76' y2='100' stroke='%23f5f5f5' stroke-width='16'/%3E%3Ccircle cx='118' cy='100' r='42' fill='none' stroke='%23f5f5f5' stroke-width='16'/%3E%3C/svg%3E">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -13,7 +13,7 @@
 <body>
 <title>Commit Zero</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Software, business and discipline. The projects I'm building, in public.">
+<meta name="description" content="Commit Zero: sites, systems and automations for businesses, built by Victor. Start a project on Instagram @commit.zero.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Noto+Serif+JP:wght@700&display=swap">
@@ -78,6 +78,7 @@ button { font: inherit; }
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
   background: radial-gradient(140px 140px at var(--mx, 30%) var(--my, 0%), rgba(255,255,255,.22), transparent 70%);
 }
+.topnav.glass, .tabbar.glass, .lang.glass { background: rgba(18,18,20,.62); }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .glass { background: rgba(28,28,30,.92); } }
 @media (prefers-reduced-transparency: reduce) { .glass { background: rgba(28,28,30,.96); -webkit-backdrop-filter: none; backdrop-filter: none; } }
 
@@ -225,48 +226,113 @@ button { font: inherit; }
 .plans.in .mrr .dash { animation: grow 2.4s .4s var(--ease) forwards; }
 @keyframes grow { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
 
-/* ---------- After hours (night + iOS focus modes) ---------- */
-.after { position: relative; overflow: hidden; color: var(--paper); }
-.after-bg { position: absolute; inset: 0; }
-.after-bg img { width: 100%; height: 100%; object-fit: cover; transition: filter .8s var(--ease), transform 1.2s var(--ease); }
-.after-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.55) 55%, rgba(5,5,5,.25) 100%); }
-@media (max-width: 899px) { .after-shade { background: linear-gradient(180deg, rgba(5,5,5,.35) 0%, rgba(5,5,5,.88) 60%); } }
-.after .wrap { position: relative; z-index: 1; padding-block: 96px; display: grid; gap: 28px; }
-.after h2 { font-size: clamp(34px, 8.6vw, 64px); font-weight: 800; letter-spacing: -0.045em; line-height: .98; max-width: 12ch; }
-.after .now { color: #e6e1dc; font-size: 17px; max-width: 40ch; min-height: 3em; }
-.focus { display: grid; gap: 10px; max-width: 380px; }
-.focus button { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 60px; padding: 0 18px; border-radius: 999px; color: var(--paper); text-align: left; cursor: pointer; transition: background .35s var(--ease), color .35s; }
-.focus button svg { width: 22px; height: 22px; }
-.focus button b { font-weight: 600; font-size: 16px; display: block; }
-.focus button small { display: block; font-size: 12px; color: var(--mist); }
-.focus button .dots { font-size: 18px; letter-spacing: 2px; color: var(--mist); }
-.focus button[aria-pressed="true"] { background: rgba(232,232,255,.92); color: #1d1d1f; }
-.focus button[aria-pressed="true"] small, .focus button[aria-pressed="true"] .dots { color: #48484f; }
-.after[data-mode="sleep"] .after-bg img { filter: brightness(.45) saturate(.6); }
-.after[data-mode="workout"] .after-bg img { filter: saturate(1.4) contrast(1.1); transform: scale(1.04); }
-.after[data-mode="dnd"] .after-bg img { filter: grayscale(1) brightness(.7); }
+/* ---------- Services (dark, interactive spec terminal) ---------- */
+.svc { position: relative; overflow: hidden; padding-block: 96px; background: radial-gradient(70% 60% at 100% 0%, rgba(226,112,30,.16), transparent 60%), radial-gradient(60% 60% at 0% 100%, rgba(47,74,53,.35), transparent 60%), var(--night); border-block: 1px solid var(--line); }
+.svc-grid { display: grid; gap: 36px; align-items: start; }
+.svc-copy { display: grid; gap: 18px; min-width: 0; }
+.svc h2 { font-size: clamp(34px, 8.6vw, 64px); font-weight: 800; letter-spacing: -0.045em; line-height: .98; max-width: 13ch; }
+.svc .lead { color: #d5d1cd; font-size: 18px; max-width: 46ch; }
+.svc-tabs { display: grid; gap: 10px; max-width: 460px; margin-top: 6px; }
+.svc-tabs button { display: grid; grid-template-columns: 44px minmax(0, 1fr) 20px; align-items: center; gap: 14px; min-height: 68px; padding: 10px 18px 10px 12px; border-radius: 22px; color: var(--paper); text-align: left; cursor: pointer; transition: background .35s var(--ease), color .35s, transform .3s var(--ease); }
+.svc-tabs button:hover { transform: translateX(4px); }
+.svc-tabs .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.08); color: var(--amber); transition: background .35s, color .35s; }
+.svc-tabs .ic svg { width: 22px; height: 22px; }
+.svc-tabs b { display: block; font-weight: 600; font-size: 16px; }
+.svc-tabs small { display: block; font-size: 13px; color: var(--mist); }
+.svc-tabs .arr { width: 18px; height: 18px; opacity: 0; transform: translateX(-6px); transition: opacity .3s, transform .3s var(--ease); }
+.svc-tabs button[aria-selected="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.svc-tabs button[aria-selected="true"] small { color: #55524f; }
+.svc-tabs button[aria-selected="true"] .ic { background: var(--ink); color: var(--amber); }
+.svc-tabs button[aria-selected="true"] .arr { opacity: 1; transform: none; }
+.svc-panel { border-radius: var(--r-l); overflow: hidden; display: grid; min-width: 0; }
+.svc-panel pre { margin: 0; padding: 20px 20px 8px; font: 400 14px/1.8 var(--font-mono); color: #d8d3cd; white-space: pre-wrap; min-height: 300px; }
+.svc-panel .p { color: var(--mist); }
+.svc-panel .ok { color: #30d158; }
+.svc-panel .k { color: var(--amber); display: inline-block; min-width: 8ch; }
+.svc-panel .get { color: var(--paper); font-weight: 500; }
+.svc-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px 20px; border-top: 1px solid rgba(255,255,255,.08); }
+.svc-foot small { color: var(--mist); font-size: 13px; max-width: 30ch; }
+@media (min-width: 900px) { .svc-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; } }
 
-/* ---------- Kit Vibecoder (white collage) ---------- */
-.kit { background: #f5f5f7; color: var(--graphite); padding-block: 80px 96px; overflow: hidden; }
-.kit h2 { text-align: center; font-size: clamp(44px, 11vw, 88px); font-weight: 800; letter-spacing: -0.05em; line-height: .95; }
-.kit .sub { text-align: center; color: var(--slate); margin-top: 10px; font-size: 17px; }
-.kit-grid { margin: 44px auto 0; max-width: 1000px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-@media (min-width: 900px) { .kit-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; grid-auto-flow: dense; } .k-tall { grid-row: span 2; } .k-wide { grid-column: span 2; } }
-.k { position: relative; border-radius: 26px; background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 18px 40px rgba(0,0,0,.06); display: grid; place-items: center; padding: 18px 18px 46px; min-height: 190px; overflow: hidden; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
-.k:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(0,0,0,.12); }
-.k img { max-height: 150px; max-width: 86%; width: auto; filter: drop-shadow(0 18px 16px rgba(0,0,0,.18)); transition: transform .7s var(--ease); }
-.k-tall img { max-height: 300px; }
-.k:hover img { transform: scale(1.06) rotate(-3deg); }
-.k .lbl { position: absolute; left: 18px; bottom: 14px; right: 18px; display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
-.k .lbl b { font-weight: 600; }
-.k .lbl span { color: var(--slate); }
-.k-ui { background: #1c1c1e; color: #f5f5f7; place-items: stretch; align-content: center; gap: 10px; padding: 22px; }
-.k-ui .lbl span { color: #a1a1a6; }
-.k-ui .pill { display: flex; align-items: center; gap: 10px; background: rgba(232,232,255,.92); color: #1d1d1f; border-radius: 999px; padding: 12px 16px; font-weight: 600; font-size: 15px; }
-.k-ui .pill svg { width: 20px; height: 20px; }
-.k-ui .pill small { margin-left: auto; color: #48484f; font-weight: 500; }
-.k-ui pre { margin: 0; font: 400 13px/1.6 var(--font-mono); color: #d1d1d6; white-space: pre-wrap; }
-.k-ui pre b { color: #30d158; font-weight: 500; }
+/* ---------- Process (light, commit graph) ---------- */
+.flow { background: #f5f5f7; color: var(--graphite); padding-block: 88px 96px; overflow: hidden; }
+.flow .eyebrow { color: var(--slate); text-align: center; }
+.flow h2 { text-align: center; font-size: clamp(36px, 9vw, 72px); font-weight: 800; letter-spacing: -0.05em; line-height: .98; margin: 14px auto 0; max-width: 14ch; }
+.flow .sub { text-align: center; color: var(--slate); margin: 14px auto 0; font-size: 17px; max-width: 46ch; }
+.steps { list-style: none; margin: 56px auto 0; padding: 0; max-width: 1100px; display: grid; gap: 0; position: relative; }
+.steps::before { content: ""; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 2px; background: #d9d9de; }
+.steps::after { content: ""; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 2px; background: linear-gradient(180deg, var(--amber), var(--pumpkin), var(--maple)); transform: scaleY(0); transform-origin: top; transition: transform 1.6s var(--ease); }
+.flow.in .steps::after { transform: none; }
+.step { position: relative; display: grid; align-content: start; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 18px; padding-block: 0 34px; }
+.step:last-child { padding-bottom: 0; }
+.step .node { grid-row: span 3; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 2px solid #d9d9de; display: grid; place-items: center; position: relative; z-index: 1; transition: border-color .4s, background .4s, transform .5s var(--ease); }
+.step .node svg { width: 20px; height: 20px; color: var(--slate); transition: color .4s; }
+.flow.in .step .node { border-color: var(--pumpkin); background: var(--ink); transform: scale(1.04); }
+.flow.in .step .node svg { color: var(--amber); }
+.flow.in .step:nth-child(2) .node { transition-delay: .35s; } .flow.in .step:nth-child(3) .node { transition-delay: .7s; } .flow.in .step:nth-child(4) .node { transition-delay: 1.05s; }
+.flow.in .step:nth-child(2) .node svg { transition-delay: .35s; } .flow.in .step:nth-child(3) .node svg { transition-delay: .7s; } .flow.in .step:nth-child(4) .node svg { transition-delay: 1.05s; }
+.step code { font: 500 12px var(--font-mono); color: #9a3a16; letter-spacing: .02em; padding-top: 4px; }
+.step h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; }
+.step p { color: var(--slate); font-size: 16px; max-width: 34ch; }
+@media (min-width: 900px) {
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+  .steps::before, .steps::after { left: 22px; right: 22px; top: 21px; bottom: auto; width: auto; height: 2px; }
+  .steps::after { background: linear-gradient(90deg, var(--amber), var(--pumpkin), var(--maple)); transform: scaleX(0); transform-origin: left; }
+  .flow.in .steps::after { transform: none; }
+  .step { grid-template-columns: minmax(0, 1fr); padding: 0; gap: 10px; }
+  .step .node { grid-row: auto; margin-bottom: 10px; }
+}
+.promises { list-style: none; margin: 56px auto 0; padding: 0; max-width: 1100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 14px; }
+.promises li { align-content: start; background: #fff; border-radius: 22px; padding: 20px; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px 14px; align-items: start; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 18px 40px rgba(0,0,0,.06); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+.promises li:hover { transform: translateY(-4px); box-shadow: 0 26px 50px rgba(0,0,0,.1); }
+.promises .ic { grid-row: span 2; width: 40px; height: 40px; border-radius: 12px; background: var(--ink); color: var(--amber); display: grid; place-items: center; }
+.promises .ic svg { width: 20px; height: 20px; }
+.promises b { font-size: 16px; }
+.promises span { color: var(--slate); font-size: 14px; }
+.stack { margin: 40px auto 0; max-width: 1100px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
+.stack span { font: 500 13px var(--font-mono); color: var(--graphite); background: #fff; border: 1px solid #e3e3e8; border-radius: 999px; padding: 8px 14px; }
+.stack .lbl { background: none; border: 0; color: var(--slate); padding-inline: 4px; }
+
+/* ---------- Hire (Instagram Direct brief) ---------- */
+.hire { position: relative; overflow: hidden; padding-block: 96px; background: radial-gradient(60% 70% at 85% 30%, rgba(214,41,118,.22), transparent 60%), radial-gradient(50% 60% at 70% 90%, rgba(250,126,30,.18), transparent 60%), var(--ink); border-top: 1px solid var(--line); }
+.hire-grid { display: grid; gap: 40px; align-items: center; }
+.hire-copy { display: grid; gap: 18px; min-width: 0; }
+.hire h2 { font-size: clamp(34px, 8.6vw, 64px); font-weight: 800; letter-spacing: -0.045em; line-height: .98; max-width: 12ch; }
+.hire .lead { color: #d5d1cd; font-size: 18px; max-width: 44ch; }
+.hire-points { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
+.hire-points li { display: flex; gap: 12px; align-items: center; color: #ece7e2; }
+.hire-points svg { width: 20px; height: 20px; color: #30d158; flex: none; }
+.dm { border-radius: 30px; padding: 0; display: grid; overflow: hidden; min-width: 0; width: 100%; max-width: 520px; justify-self: center; }
+.dm-head { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.dm-av { width: 44px; height: 44px; border-radius: 50%; padding: 2px; background: linear-gradient(225deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); flex: none; }
+.dm-av span { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--ink); color: var(--paper); }
+.dm-av svg { width: 24px; height: 24px; }
+.dm-head b { display: block; font-size: 15px; }
+.dm-head small { display: block; color: var(--mist); font-size: 12px; }
+.dm-body { display: grid; gap: 18px; padding: 18px; }
+.dm fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; min-width: 0; }
+.dm legend, .dm label.q { font-size: 13px; font-weight: 600; color: var(--mist); padding: 0; margin-bottom: 10px; }
+.dm label.q { margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chips label { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.05); font-size: 14px; font-weight: 500; cursor: pointer; transition: background .25s, color .25s, border-color .25s, transform .2s var(--ease); }
+.chips label:hover { background: rgba(255,255,255,.12); }
+.chips input:checked + label { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.chips input:focus-visible + label { outline: 3px solid var(--amber); outline-offset: 2px; }
+.chips input:active + label { transform: scale(.96); }
+.dm textarea { width: 100%; min-height: 76px; resize: vertical; border-radius: 18px; border: 1px solid rgba(255,255,255,.2); background: rgba(0,0,0,.25); color: var(--paper); font: 400 16px/1.45 var(--font-ui); padding: 12px 14px; }
+.dm textarea::placeholder { color: #8d8884; }
+.dm textarea:focus { outline: 3px solid var(--amber); outline-offset: 2px; }
+.dm-preview { display: grid; justify-items: end; gap: 6px; padding: 14px; border-radius: 20px; background: rgba(0,0,0,.35); }
+.dm-preview small { font: 500 11px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--mist); justify-self: start; }
+.dm-bubble { max-width: 92%; padding: 10px 14px; border-radius: 22px 22px 6px 22px; background: linear-gradient(135deg, #7a3cf0 0%, #b23ad8 45%, #e8418c 100%); color: #fff; font-size: 15px; line-height: 1.4; white-space: pre-wrap; overflow-wrap: anywhere; }
+.dm-send { width: 100%; background: linear-gradient(90deg, #fa7e1e, #d62976 55%, #962fbf); color: #fff; min-height: 54px; font-size: 17px; }
+.dm-send:hover { filter: brightness(1.08); }
+.dm-alt { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--mist); }
+.dm-alt a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+.dm-status { font-size: 14px; font-weight: 600; color: #30d158; min-height: 1.4em; }
+@media (min-width: 900px) { .hire-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; } }
+@media (prefers-reduced-motion: reduce) { .steps::after { transform: none !important; } }
 
 /* ---------- Animated logo ---------- */
 .logo-anim { overflow: visible; }
@@ -478,6 +544,14 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
   <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 00-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></symbol>
   <symbol id="i-run" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="4.5" r="2"/><path d="M6 21l3-6 3 2 1-5 3 3h3M9 9l3-2 2 1"/></symbol>
   <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"><path d="M13 2.5L4.5 13.5H11l-1 8 8.5-11H12z"/></symbol>
+  <symbol id="i-pad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10a5 5 0 015 5v1.5a3.5 3.5 0 01-6.3 2.1L14.5 14h-5l-1.2 1.6A3.5 3.5 0 012 13.5V12a5 5 0 015-5z"/><path d="M7.5 10v3M6 11.5h3"/><circle cx="16.5" cy="10.5" r=".9" fill="currentColor"/><circle cx="18" cy="12.8" r=".9" fill="currentColor"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.5a8 8 0 01-11.7 7.1L3.5 20l1.4-4.9A8 8 0 1120.5 11.5z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4.5c3-1.5 5.5-1.5 5.5-1.5s0 2.5-1.5 5.5L12 14.5 9.5 12z"/><path d="M9.5 12L6 11.5 8.5 9H12M12 14.5l.5 3.5 2.5-2.5V12"/><path d="M6.5 15.5c-1.5.5-2.5 2.5-2.5 4.5 2 0 4-1 4.5-2.5"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8L20 3M16.5 6.5l2.5 2.5M14.5 8.5l2 2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
 </svg>
 
 <a class="skip" href="#content">Skip to content</a>
@@ -485,10 +559,10 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
 <nav class="topnav glass" aria-label="Main">
   <a class="brand" href="#top" aria-label="Commit Zero, home"><svg class="logo-anim" viewBox="0 0 200 200" aria-hidden="true"><line class="l-stub" x1="38" y1="100" x2="76" y2="100" stroke="currentColor" stroke-width="16"/><circle class="l-ring" cx="118" cy="100" r="42" fill="none" stroke="currentColor" stroke-width="16"/><circle class="l-dot" cx="118" cy="46" r="9"/></svg></a>
   <a href="#top" data-nav="top" aria-current="true" data-i18n="nav.home">Home</a>
+  <a href="#services" data-nav="services" data-i18n="nav.services">Services</a>
   <a href="#projects" data-nav="projects" data-i18n="nav.projects">Projects</a>
   <a href="#about" data-nav="about" data-i18n="nav.about">About</a>
-  <a href="#connect" data-nav="connect" data-i18n="nav.connect">Connect</a>
-  <a class="cta" href="#letter" data-nav="letter" data-i18n="nav.subscribe">Subscribe</a>
+  <a class="cta" href="#hire" data-nav="hire" data-i18n="nav.hire">Start a project</a>
 </nav>
 <div class="lang glass" role="group" aria-label="Language">
   <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -496,9 +570,9 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
 </div>
 <nav class="tabbar glass" aria-label="Main">
   <a href="#top" data-nav="top" aria-current="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-git"/></svg><span data-i18n="nav.home">Home</span></a>
+  <a href="#services" data-nav="services"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg><span data-i18n="nav.services">Services</span></a>
   <a href="#projects" data-nav="projects"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-menu"/></svg><span data-i18n="nav.projects">Projects</span></a>
-  <a href="#connect" data-nav="connect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" stroke-linecap="round"/></svg><span data-i18n="nav.connect">Connect</span></a>
-  <a href="#letter" data-nav="letter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg><span data-i18n="nav.letter">Letter</span></a>
+  <a href="#hire" data-nav="hire"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="nav.contact">Contact</span></a>
 </nav>
 
 <header class="hero" id="top">
@@ -510,10 +584,10 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
     <div class="hero-copy">
       <p class="eyebrow" data-i18n="hero.eyebrow">commit.zero · building in public</p>
       <h1 data-i18n="hero.title">Every project starts at commit <span class="z">zero.</span></h1>
-      <p class="synopsis" data-i18n="hero.sub">Games, software and small businesses. Here's what I'm building, how it's going and what I learn along the way.</p>
+      <p class="synopsis" data-i18n="hero.sub">Sites, systems and automations for businesses. And the products I build in public, from the first commit.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="#projects"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-menu"/></svg><span data-i18n="hero.cta1">See the projects</span></a>
-        <a class="btn btn-glass glass" href="#letter"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg><span data-i18n="hero.cta2">Get the letter</span></a>
+        <a class="btn btn-primary" href="#hire"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="hero.cta1">Start a project</span></a>
+        <a class="btn btn-glass glass" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg><span data-i18n="hero.cta2">See services</span></a>
       </div>
     </div>
     <div class="term glass" role="img" aria-label="Terminal showing the latest commits">
@@ -567,37 +641,45 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
     </ul>
   </section>
 
-  <section class="after" id="after" data-mode="ship" aria-labelledby="after-title">
-    <div class="after-bg" aria-hidden="true"><img src="media/night.webp" alt=""></div>
-    <div class="after-shade" aria-hidden="true"></div>
-    <div class="wrap">
-      <p class="eyebrow" data-i18n="after.eyebrow">After hours</p>
-      <h2 id="after-title" data-i18n="after.title">Earbuds in. Lid open. Back to work.</h2>
-      <div class="focus" role="group" aria-label="Focus modes">
-        <button class="glass" type="button" data-mode="dnd" aria-pressed="false"><svg aria-hidden="true"><use href="#i-moon"/></svg><span><b data-i18n="after.dnd">Do Not Disturb</b><small data-i18n="after.dndsub">Silence all notifications</small></span><span class="dots" aria-hidden="true">···</span></button>
-        <button class="glass" type="button" data-mode="sleep" aria-pressed="false"><svg aria-hidden="true"><use href="#i-bed"/></svg><span><b data-i18n="after.sleep">Sleep</b></span><span class="dots" aria-hidden="true">···</span></button>
-        <button class="glass" type="button" data-mode="workout" aria-pressed="false"><svg aria-hidden="true"><use href="#i-run"/></svg><span><b data-i18n="after.workout">Workout</b></span><span class="dots" aria-hidden="true">···</span></button>
-        <button class="glass" type="button" data-mode="ship" aria-pressed="true"><svg aria-hidden="true"><use href="#i-laptop"/></svg><span><b data-i18n="after.ship">Shipping</b><small class="on" data-i18n="after.on">On</small></span><span class="dots" aria-hidden="true">···</span></button>
+  <section class="svc" id="services" aria-labelledby="svc-title">
+    <div class="wrap svc-grid">
+      <div class="svc-copy">
+        <p class="eyebrow" data-i18n="svc.eyebrow">For businesses</p>
+        <h2 id="svc-title" data-i18n="svc.title">Your idea, live and working.</h2>
+        <p class="lead" data-i18n="svc.lead">I design, build and publish the whole thing, from the first screen to the deploy. Pick what you need:</p>
+        <div class="svc-tabs" role="tablist" aria-label="Services">
+          <button class="glass" type="button" role="tab" id="tab-site" aria-controls="svc-panel" aria-selected="true" data-svc="site"><span class="ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><span><b data-i18n="svc.site">Websites and landing pages</b><small data-i18n="svc.sitesub">To sell and be found</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button class="glass" type="button" role="tab" id="tab-sys" aria-controls="svc-panel" aria-selected="false" tabindex="-1" data-svc="sys"><span class="ic"><svg aria-hidden="true"><use href="#i-menu"/></svg></span><span><b data-i18n="svc.sys">Custom systems</b><small data-i18n="svc.syssub">Out of spreadsheets, into a real tool</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button class="glass" type="button" role="tab" id="tab-auto" aria-controls="svc-panel" aria-selected="false" tabindex="-1" data-svc="auto"><span class="ic"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span><span><b data-i18n="svc.auto">Automations</b><small data-i18n="svc.autosub">The repetitive work, done by itself</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button class="glass" type="button" role="tab" id="tab-game" aria-controls="svc-panel" aria-selected="false" tabindex="-1" data-svc="game"><span class="ic"><svg aria-hidden="true"><use href="#i-pad"/></svg></span><span><b data-i18n="svc.game">Games on Roblox</b><small data-i18n="svc.gamesub">Systems, UI and scripting</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
       </div>
-      <p class="now" id="now" aria-live="polite"></p>
+      <div class="svc-panel glass" id="svc-panel" role="tabpanel" aria-labelledby="tab-site">
+        <div class="term-bar"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-term"/></svg><span>~/commit-zero — new project</span></div>
+        <pre id="svc-out" aria-live="polite"></pre>
+        <div class="svc-foot"><small data-i18n="svc.note">Scope, deadline and price agreed in writing before any code.</small><a class="btn btn-primary" href="#hire" id="svc-cta"><span data-i18n="svc.cta">Start this project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
     </div>
   </section>
 
-  <section class="kit" aria-labelledby="kit-title">
+  <section class="flow" id="process" aria-labelledby="flow-title">
     <div class="wrap">
-      <h2 id="kit-title">Kit Vibecoder</h2>
-      <p class="sub" data-i18n="kit.sub">Black hoodie, shorts, earbuds in. Everything else fits on one desk.</p>
-      <div class="kit-grid">
-        <div class="k k-tall k-wide"><img src="media/kit-laptop.webp" alt="Laptop"><span class="lbl"><b data-i18n="kit.laptop">Laptop</b><span data-i18n="kit.laptopsub">Ships</span></span></div>
-        <div class="k"><img src="media/kit-espresso.webp" alt="Glass of espresso"><span class="lbl"><b>Espresso</b><span data-i18n="kit.double">Double</span></span></div>
-        <div class="k k-tall"><img src="media/kit-can.webp" alt="White Monster Energy Zero Ultra can"><span class="lbl"><b>Monster Ultra</b><span data-i18n="kit.zero">Zero sugar</span></span></div>
-        <div class="k"><img src="media/kit-earbuds.webp" alt="White earbuds in their case"><span class="lbl"><b data-i18n="kit.earbuds">Earbuds</b><span data-i18n="kit.always">Always in</span></span></div>
-        <div class="k k-wide"><img src="media/kit-keyboard.webp" alt="Black mechanical keyboard with a red escape key"><span class="lbl"><b data-i18n="kit.keyboard">Keyboard</b><span>75%</span></span></div>
-        <div class="k k-wide"><img src="media/kit-watch.webp" alt="Black smartwatch"><span class="lbl"><b data-i18n="kit.watch">Watch</b><span data-i18n="kit.still">Still building</span></span></div>
-        <div class="k k-ui k-tall"><span class="pill"><svg aria-hidden="true"><use href="#i-laptop"/></svg><span data-i18n="after.ship">Shipping</span><small data-i18n="after.on">On</small></span><pre>$ git push
-<b>✓</b> main → origin</pre><span class="lbl"><b data-i18n="kit.focus">Focus</b><span data-i18n="kit.real">The real kit</span></span></div>
-        <div class="k k-wide"><img src="media/kit-dumbbells.webp" alt="Pair of dumbbells"><span class="lbl"><b data-i18n="kit.dumbbells">Dumbbells</b><span data-i18n="plans.p4">Lift heavy</span></span></div>
-      </div>
+      <p class="eyebrow" data-i18n="flow.eyebrow">How it works</p>
+      <h2 id="flow-title" data-i18n="flow.title">From the first message to the deploy.</h2>
+      <p class="sub" data-i18n="flow.sub">No surprises. You know what you're getting, when and for how much before anything starts.</p>
+      <ol class="steps">
+        <li class="step"><span class="node"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><code>01 · briefing</code><h3 data-i18n="flow.s1">We talk on Direct</h3><p data-i18n="flow.s1p">You tell me the problem. I ask the right questions to understand your business.</p></li>
+        <li class="step"><span class="node"><svg aria-hidden="true"><use href="#i-doc"/></svg></span><code>02 · proposal</code><h3 data-i18n="flow.s2">Clear proposal</h3><p data-i18n="flow.s2p">Scope, deadline and price in writing. You approve before a single line of code.</p></li>
+        <li class="step"><span class="node"><svg aria-hidden="true"><use href="#i-code"/></svg></span><code>03 · build</code><h3 data-i18n="flow.s3">Build in the open</h3><p data-i18n="flow.s3p">You follow the progress through a preview link and give feedback along the way.</p></li>
+        <li class="step"><span class="node"><svg aria-hidden="true"><use href="#i-rocket"/></svg></span><code>04 · deploy</code><h3 data-i18n="flow.s4">Live and handed over</h3><p data-i18n="flow.s4p">Published, tested on mobile, with the code and every access in your name.</p></li>
+      </ol>
+      <ul class="promises">
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-key"/></svg></span><b data-i18n="flow.p1">The code is yours</b><span data-i18n="flow.p1s">No lock-in. Repository, domain and accounts in your name.</span></li>
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><b data-i18n="flow.p2">Mobile first</b><span data-i18n="flow.p2s">Built for the phone, where your customers actually are.</span></li>
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><b data-i18n="flow.p3">Accessible and fast</b><span data-i18n="flow.p3s">Readable, keyboard friendly and light to load.</span></li>
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><b data-i18n="flow.p4">Direct line</b><span data-i18n="flow.p4s">You talk to the person who writes the code.</span></li>
+      </ul>
+      <div class="stack" aria-label="Stack"><span class="lbl" data-i18n="flow.stack">Stack</span><span>JavaScript</span><span>Node.js</span><span>Python</span><span>Lua · Roblox</span><span>HTML / CSS</span><span>GitHub</span><span>Vercel</span></div>
     </div>
   </section>
 
@@ -630,6 +712,46 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
           <li><svg aria-hidden="true"><use href="#i-flame"/></svg><b data-i18n="about.b3">Discipline</b><span data-i18n="about.p3">Routines that survive a full week.</span></li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="hire" id="hire" aria-labelledby="hire-title">
+    <div class="wrap hire-grid">
+      <div class="hire-copy">
+        <p class="eyebrow" data-i18n="hire.eyebrow">Work with me</p>
+        <h2 id="hire-title" data-i18n="hire.title">Got a project? Send it on Direct.</h2>
+        <p class="lead" data-i18n="hire.lead">Pick two options, write one line and your message is ready. Instagram opens with the text copied: just paste and send.</p>
+        <ul class="hire-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="hire.p1">A reply from me, not from a bot</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="hire.p2">Scope and price in writing before we start</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="hire.p3">Small businesses and first projects welcome</span></li>
+        </ul>
+      </div>
+      <form class="dm glass" id="dm-form" novalidate>
+        <div class="dm-head"><span class="dm-av"><span><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#i-logo"/></svg></span></span><span><b>commit.zero</b><small data-i18n="hire.via">Instagram · Direct message</small></span></div>
+        <div class="dm-body">
+          <fieldset><legend data-i18n="hire.q1">What do you need?</legend>
+            <div class="chips">
+              <input type="radio" name="type" id="t-site" value="site" checked><label for="t-site" data-i18n="hire.t.site">Website</label>
+              <input type="radio" name="type" id="t-sys" value="sys"><label for="t-sys" data-i18n="hire.t.sys">System</label>
+              <input type="radio" name="type" id="t-auto" value="auto"><label for="t-auto" data-i18n="hire.t.auto">Automation</label>
+              <input type="radio" name="type" id="t-game" value="game"><label for="t-game" data-i18n="hire.t.game">Roblox game</label>
+              <input type="radio" name="type" id="t-other" value="other"><label for="t-other" data-i18n="hire.t.other">Something else</label>
+            </div></fieldset>
+          <fieldset><legend data-i18n="hire.q2">Where are you at?</legend>
+            <div class="chips">
+              <input type="radio" name="stage" id="s-idea" value="idea" checked><label for="s-idea" data-i18n="hire.s.idea">Just an idea</label>
+              <input type="radio" name="stage" id="s-have" value="have"><label for="s-have" data-i18n="hire.s.have">I have something to improve</label>
+              <input type="radio" name="stage" id="s-soon" value="soon"><label for="s-soon" data-i18n="hire.s.soon">I need it soon</label>
+            </div></fieldset>
+          <div style="display:grid;gap:10px"><label class="q" for="dm-msg" data-i18n="hire.q3">In one line, what's the project?</label>
+            <textarea id="dm-msg" rows="2" maxlength="280" data-ph="hire.ph"></textarea></div>
+          <div class="dm-preview"><small data-i18n="hire.preview">Your message</small><p class="dm-bubble" id="dm-bubble"></p></div>
+          <button class="btn dm-send" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg><span data-i18n="hire.send">Send on Instagram</span></button>
+          <p class="dm-status" id="dm-status" role="status" aria-live="polite"></p>
+          <div class="dm-alt"><span data-i18n="hire.alt">Prefer to write it yourself?</span><a data-link="dm" href="https://ig.me/m/commit.zero" target="_blank" rel="noopener" data-i18n="hire.open">Open @commit.zero</a></div>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -715,7 +837,8 @@ const CONFIG = {
     tiktok: "https://www.tiktok.com/@commit.zero",
     youtube: "https://www.youtube.com/@commit.zero",
     x: "",                                   // e.g. "https://x.com/yourhandle" — empty hides the tile
-    linktree: "https://linktr.ee/commit.zero"
+    linktree: "https://linktr.ee/commit.zero",
+    dm: "https://ig.me/m/commit.zero"          // opens the Instagram Direct chat
   },
   newsletterEndpoint: ""                     // e.g. a Buttondown embed URL; empty = signups not open yet
 };
@@ -734,8 +857,8 @@ const I18N = {
     "nav.home": "Home", "nav.projects": "Projects", "nav.about": "About", "nav.connect": "Connect", "nav.subscribe": "Subscribe", "nav.letter": "Letter",
     "hero.eyebrow": "commit.zero · building in public",
     "hero.title": 'Every project starts at commit <span class="z">zero.</span>',
-    "hero.sub": "Games, software and small businesses. Here's what I'm building, how it's going and what I learn along the way.",
-    "hero.cta1": "See the projects", "hero.cta2": "Get the letter",
+    "hero.sub": "Sites, systems and automations for businesses. And the products I build in public, from the first commit.",
+    "hero.cta1": "Start a project", "hero.cta2": "See services",
     "plans.bubble": "sorry i have plans.", "plans.read": "Delivered", "plans.title": "the plans:",
     "plans.p1": "Build + ship cool stuff", "plans.p2": "Drink an unhealthy amount of coffee", "plans.p3": "Make it grow from zero", "plans.p4": "Lift heavy", "plans.soon": "↑ soon",
     "proj.title": "Projects", "proj.sub": "What's live, what's next and what's still locked.", "proj.cz": "Brand, logo and this site",
@@ -746,6 +869,42 @@ const I18N = {
     "mode.workout": "Workout: the body is part of the stack.", "mode.ship": "Shipping: notifications off, coffee on, commits going out.",
     "kit.sub": "Black hoodie, shorts, earbuds in. Everything else fits on one desk.", "kit.laptop": "Laptop", "kit.laptopsub": "Ships", "kit.double": "Double", "kit.zero": "Zero sugar",
     "kit.earbuds": "Earbuds", "kit.always": "Always in", "kit.keyboard": "Keyboard", "kit.watch": "Watch", "kit.still": "Still building", "kit.focus": "Focus", "kit.real": "The real kit", "kit.dumbbells": "Dumbbells",
+    "nav.services": "Services", "nav.hire": "Start a project", "nav.contact": "Contact",
+    "svc.eyebrow": "For businesses", "svc.title": "Your idea, live and working.",
+    "svc.lead": "I design, build and publish the whole thing, from the first screen to the deploy. Pick what you need:",
+    "svc.site": "Websites and landing pages", "svc.sitesub": "To sell and be found",
+    "svc.sys": "Custom systems", "svc.syssub": "Out of spreadsheets, into a real tool",
+    "svc.auto": "Automations", "svc.autosub": "The repetitive work, done by itself",
+    "svc.game": "Games on Roblox", "svc.gamesub": "Systems, UI and scripting",
+    "svc.note": "Scope, deadline and price agreed in writing before any code.", "svc.cta": "Start this project",
+    "svcdata": {
+      site: { flag: "website", rows: [["design", "Layout made for your brand, mobile first"], ["build", "Fast pages, basic SEO, WhatsApp and Instagram buttons"], ["deploy", "Live on your own domain, with visit analytics"]], get: "a site that works for your business, not just one that looks nice" },
+      sys: { flag: "system", rows: [["map", "The process you run today on spreadsheets and chats"], ["build", "Panel with login, records, reports and permissions"], ["deploy", "Online and tested with your real data"]], get: "a tool shaped around how you already work" },
+      auto: { flag: "automation", rows: [["find", "The tasks your team repeats every single day"], ["build", "Integrations, bots and scripts between your tools"], ["run", "Working on its own, with alerts if anything fails"]], get: "hours back every week" },
+      game: { flag: "roblox", rows: [["design", "Game loop, systems and UI planned before code"], ["build", "Lua scripting inside Roblox Studio"], ["ship", "Published, tested and ready for players"]], get: "a playable game, not just a prototype" }
+    },
+    "flow.eyebrow": "How it works", "flow.title": "From the first message to the deploy.",
+    "flow.sub": "No surprises. You know what you're getting, when and for how much before anything starts.",
+    "flow.s1": "We talk on Direct", "flow.s1p": "You tell me the problem. I ask the right questions to understand your business.",
+    "flow.s2": "Clear proposal", "flow.s2p": "Scope, deadline and price in writing. You approve before a single line of code.",
+    "flow.s3": "Build in the open", "flow.s3p": "You follow the progress through a preview link and give feedback along the way.",
+    "flow.s4": "Live and handed over", "flow.s4p": "Published, tested on mobile, with the code and every access in your name.",
+    "flow.p1": "The code is yours", "flow.p1s": "No lock-in. Repository, domain and accounts in your name.",
+    "flow.p2": "Mobile first", "flow.p2s": "Built for the phone, where your customers actually are.",
+    "flow.p3": "Accessible and fast", "flow.p3s": "Readable, keyboard friendly and light to load.",
+    "flow.p4": "Direct line", "flow.p4s": "You talk to the person who writes the code.", "flow.stack": "Stack",
+    "hire.eyebrow": "Work with me", "hire.title": "Got a project? Send it on Direct.",
+    "hire.lead": "Pick two options, write one line and your message is ready. Instagram opens with the text copied: just paste and send.",
+    "hire.p1": "A reply from me, not from a bot", "hire.p2": "Scope and price in writing before we start", "hire.p3": "Small businesses and first projects welcome",
+    "hire.via": "Instagram · Direct message", "hire.q1": "What do you need?", "hire.q2": "Where are you at?", "hire.q3": "In one line, what's the project?",
+    "hire.t.site": "Website", "hire.t.sys": "System", "hire.t.auto": "Automation", "hire.t.game": "Roblox game", "hire.t.other": "Something else",
+    "hire.s.idea": "Just an idea", "hire.s.have": "I have something to improve", "hire.s.soon": "I need it soon",
+    "hire.ph": "e.g. I run a bakery and want a site with the menu and orders on WhatsApp",
+    "hire.preview": "Your message", "hire.send": "Send on Instagram", "hire.alt": "Prefer to write it yourself?", "hire.open": "Open @commit.zero",
+    "dm.hi": "Hi Victor! I found you through the Commit Zero site.",
+    "dm.t.site": "I'm looking for a website.", "dm.t.sys": "I need a custom system.", "dm.t.auto": "I want to automate part of my work.", "dm.t.game": "I want to build a game on Roblox.", "dm.t.other": "I have a different project in mind.",
+    "dm.s.idea": "It's still just an idea.", "dm.s.have": "I already have something and want to improve it.", "dm.s.soon": "I need it soon.",
+    "dm.ok": "Message copied. Paste it in the chat that just opened.", "dm.nocopy": "Instagram opened. Copy the message above and paste it in the chat.",
     "about.eyebrow": "About", "about.title": "I build quietly and show the process.",
     "about.lead": "Commit Zero is where I document what I build: games, software and small businesses, plus the habits that keep them moving.",
     "about.p1": "Products, automations and the tools behind them.", "about.b2": "Business", "about.p2": "What I sell, what works and what doesn't.", "about.b3": "Discipline", "about.p3": "Routines that survive a full week.",
@@ -762,8 +921,8 @@ const I18N = {
     "nav.home": "Início", "nav.projects": "Projetos", "nav.about": "Sobre", "nav.connect": "Redes", "nav.subscribe": "Assinar", "nav.letter": "Carta",
     "hero.eyebrow": "commit.zero · construindo em público",
     "hero.title": 'Todo projeto começa no commit <span class="z">zero.</span>',
-    "hero.sub": "Jogos, software e pequenos negócios. O que estou construindo, como está indo e o que aprendo no caminho.",
-    "hero.cta1": "Ver os projetos", "hero.cta2": "Receber a carta",
+    "hero.sub": "Sites, sistemas e automações para empresas. E os produtos que eu construo em público, desde o primeiro commit.",
+    "hero.cta1": "Começar um projeto", "hero.cta2": "Ver serviços",
     "plans.bubble": "foi mal, tenho planos.", "plans.read": "Entregue", "plans.title": "os planos:",
     "plans.p1": "Construir e lançar coisas legais", "plans.p2": "Tomar uma quantidade nada saudável de café", "plans.p3": "Fazer crescer a partir do zero", "plans.p4": "Treinar pesado", "plans.soon": "↑ em breve",
     "proj.title": "Projetos", "proj.sub": "O que está no ar, o que vem a seguir e o que ainda está trancado.", "proj.cz": "Marca, logo e este site",
@@ -774,6 +933,42 @@ const I18N = {
     "mode.workout": "Treino: o corpo também faz parte da stack.", "mode.ship": "Entregando: notificações desligadas, café ligado, commits saindo.",
     "kit.sub": "Moletom preto, bermuda, fone no ouvido. O resto cabe numa mesa só.", "kit.laptop": "Notebook", "kit.laptopsub": "Onde tudo sai", "kit.double": "Duplo", "kit.zero": "Zero açúcar",
     "kit.earbuds": "Fones", "kit.always": "Sempre no ouvido", "kit.keyboard": "Teclado", "kit.watch": "Relógio", "kit.still": "Ainda construindo", "kit.focus": "Foco", "kit.real": "O kit de verdade", "kit.dumbbells": "Halteres",
+    "nav.services": "Serviços", "nav.hire": "Começar um projeto", "nav.contact": "Contato",
+    "svc.eyebrow": "Para empresas", "svc.title": "Sua ideia, no ar e funcionando.",
+    "svc.lead": "Eu desenho, desenvolvo e publico tudo, da primeira tela até o deploy. Escolha o que você precisa:",
+    "svc.site": "Sites e landing pages", "svc.sitesub": "Pra vender e ser encontrado",
+    "svc.sys": "Sistemas sob medida", "svc.syssub": "Da planilha pra uma ferramenta de verdade",
+    "svc.auto": "Automações", "svc.autosub": "O trabalho repetitivo, feito sozinho",
+    "svc.game": "Jogos no Roblox", "svc.gamesub": "Sistemas, interface e scripts",
+    "svc.note": "Escopo, prazo e valor combinados por escrito antes de qualquer código.", "svc.cta": "Começar este projeto",
+    "svcdata": {
+      site: { flag: "site", rows: [["design", "Layout feito pra sua marca, pensado no celular"], ["build", "Páginas rápidas, SEO básico, botões de WhatsApp e Instagram"], ["deploy", "No ar com seu domínio e métricas de visitas"]], get: "um site que trabalha pelo seu negócio, não só um site bonito" },
+      sys: { flag: "sistema", rows: [["mapear", "O processo que hoje roda em planilha e conversa"], ["build", "Painel com login, cadastros, relatórios e permissões"], ["deploy", "Online e testado com os seus dados reais"]], get: "uma ferramenta no formato de como você já trabalha" },
+      auto: { flag: "automacao", rows: [["achar", "As tarefas que sua equipe repete todo santo dia"], ["build", "Integrações, bots e scripts entre as suas ferramentas"], ["rodar", "Funcionando sozinho, com alerta se algo falhar"]], get: "horas de volta toda semana" },
+      game: { flag: "roblox", rows: [["design", "Loop do jogo, sistemas e interface planejados antes do código"], ["build", "Scripts em Lua dentro do Roblox Studio"], ["lançar", "Publicado, testado e pronto pros jogadores"]], get: "um jogo jogável, não só um protótipo" }
+    },
+    "flow.eyebrow": "Como funciona", "flow.title": "Da primeira mensagem ao deploy.",
+    "flow.sub": "Sem surpresa. Você sabe o que vai receber, quando e por quanto antes de qualquer coisa começar.",
+    "flow.s1": "A gente conversa no Direct", "flow.s1p": "Você me conta o problema. Eu faço as perguntas certas pra entender o seu negócio.",
+    "flow.s2": "Proposta clara", "flow.s2p": "Escopo, prazo e valor por escrito. Você aprova antes da primeira linha de código.",
+    "flow.s3": "Desenvolvimento à vista", "flow.s3p": "Você acompanha o andamento por um link de prévia e dá feedback no caminho.",
+    "flow.s4": "No ar e entregue", "flow.s4p": "Publicado, testado no celular, com o código e todos os acessos no seu nome.",
+    "flow.p1": "O código é seu", "flow.p1s": "Sem amarras. Repositório, domínio e contas no seu nome.",
+    "flow.p2": "Pensado no celular", "flow.p2s": "Feito pro celular, onde os seus clientes realmente estão.",
+    "flow.p3": "Acessível e rápido", "flow.p3s": "Fácil de ler, navegável pelo teclado e leve pra carregar.",
+    "flow.p4": "Contato direto", "flow.p4s": "Você fala com quem escreve o código.", "flow.stack": "Stack",
+    "hire.eyebrow": "Trabalhe comigo", "hire.title": "Tem um projeto? Manda no Direct.",
+    "hire.lead": "Escolha duas opções, escreva uma linha e a mensagem fica pronta. O Instagram abre com o texto copiado: é só colar e enviar.",
+    "hire.p1": "Quem responde sou eu, não um robô", "hire.p2": "Escopo e valor por escrito antes de começar", "hire.p3": "Pequenos negócios e primeiro projeto são bem-vindos",
+    "hire.via": "Instagram · Mensagem direta", "hire.q1": "Do que você precisa?", "hire.q2": "Em que pé está?", "hire.q3": "Em uma linha, qual é o projeto?",
+    "hire.t.site": "Site", "hire.t.sys": "Sistema", "hire.t.auto": "Automação", "hire.t.game": "Jogo no Roblox", "hire.t.other": "Outra coisa",
+    "hire.s.idea": "Só uma ideia", "hire.s.have": "Já tenho algo pra melhorar", "hire.s.soon": "Preciso pra logo",
+    "hire.ph": "ex.: tenho uma padaria e quero um site com o cardápio e pedidos pelo WhatsApp",
+    "hire.preview": "Sua mensagem", "hire.send": "Enviar no Instagram", "hire.alt": "Prefere escrever do seu jeito?", "hire.open": "Abrir @commit.zero",
+    "dm.hi": "Oi Victor! Vim pelo site da Commit Zero.",
+    "dm.t.site": "Preciso de um site.", "dm.t.sys": "Preciso de um sistema sob medida.", "dm.t.auto": "Quero automatizar parte do meu trabalho.", "dm.t.game": "Quero desenvolver um jogo no Roblox.", "dm.t.other": "Tenho outro projeto em mente.",
+    "dm.s.idea": "Por enquanto é só uma ideia.", "dm.s.have": "Já tenho algo e quero melhorar.", "dm.s.soon": "Preciso pra logo.",
+    "dm.ok": "Mensagem copiada. Cole no chat que acabou de abrir.", "dm.nocopy": "O Instagram abriu. Copie a mensagem acima e cole no chat.",
     "about.eyebrow": "Sobre", "about.title": "Construo em silêncio e mostro o processo.",
     "about.lead": "A Commit Zero é onde eu documento o que construo: jogos, software e pequenos negócios, além dos hábitos que mantêm tudo andando.",
     "about.p1": "Produtos, automações e as ferramentas por trás deles.", "about.b2": "Negócios", "about.p2": "O que eu vendo, o que funciona e o que não funciona.", "about.b3": "Disciplina", "about.p3": "Rotinas que aguentam a semana inteira.",
@@ -797,12 +992,12 @@ const T = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.en[k];
   const dpr = Math.min(devicePixelRatio || 1, 2);
 
   /* language */
-  const after = document.getElementById("after"), now = document.getElementById("now");
+  const langHooks = [];
   function applyLang(l) {
     LANG = I18N[l] ? l : "en"; document.documentElement.lang = LANG === "pt" ? "pt-BR" : "en";
     document.querySelectorAll("[data-i18n]").forEach(el => { const v = T(el.dataset.i18n); if (typeof v === "string") el.innerHTML = v; });
     document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
-    now.textContent = T("mode." + after.dataset.mode);
+    langHooks.forEach(f => f());
     try { localStorage.setItem("cz-lang", LANG); } catch (e) {}
   }
   document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => applyLang(b.dataset.lang)));
@@ -899,13 +1094,50 @@ const T = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.en[k];
     reduce ? show() : setTimeout(show, 1400);
   }, { threshold: .3 }).observe(plans);
 
-  /* after hours: focus modes */
-  after.querySelectorAll(".focus button").forEach(b => b.addEventListener("click", () => {
-    after.querySelectorAll(".focus button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-    after.dataset.mode = b.dataset.mode; now.textContent = T("mode." + b.dataset.mode);
-    after.querySelectorAll(".focus small.on").forEach(sm => sm.remove());
-    if (b.dataset.mode !== "dnd") { const sm = document.createElement("small"); sm.className = "on"; sm.dataset.i18n = "after.on"; sm.textContent = T("after.on"); b.querySelector("span b").after(sm); }
-  }));
+  /* services: tabs + spec terminal */
+  const svcOut = document.getElementById("svc-out"), svcPanel = document.getElementById("svc-panel");
+  const svcTabs = [...document.querySelectorAll(".svc-tabs [role=tab]")];
+  let svcCur = "site", svcTimer;
+  function renderSvc(animate) {
+    const d = T("svcdata")[svcCur]; clearTimeout(svcTimer);
+    const head = `<span class="p">$</span> commit-zero new --${d.flag}\n`;
+    const rows = d.rows.map(([k, v]) => `<span class="ok">✓</span> <span class="k">${k}</span>${v}`);
+    const tail = `\n<span class="p">→</span> <span class="get">${d.get}</span>`;
+    if (!animate || reduce) { svcOut.innerHTML = head + rows.join("\n") + "\n" + tail; return; }
+    let i = 0; svcOut.innerHTML = head + '<span class="caret"></span>';
+    const step = () => { i++; svcOut.innerHTML = head + rows.slice(0, i).join("\n") + (i < rows.length ? '\n<span class="caret"></span>' : "\n" + tail); if (i < rows.length) svcTimer = setTimeout(step, 280); };
+    svcTimer = setTimeout(step, 280);
+  }
+  function selSvc(btn, focus) {
+    svcTabs.forEach(b => { const on = b === btn; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
+    svcCur = btn.dataset.svc; svcPanel.setAttribute("aria-labelledby", btn.id); if (focus) btn.focus(); renderSvc(true);
+  }
+  svcTabs.forEach((b, i) => {
+    b.addEventListener("click", () => selSvc(b));
+    b.addEventListener("keydown", e => { const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (!k) return; e.preventDefault(); selSvc(svcTabs[(i + k + svcTabs.length) % svcTabs.length], true); });
+  });
+  renderSvc(false);
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); renderSvc(true); } }, { threshold: .35 }).observe(svcPanel);
+
+  /* process: draw the commit line when in view */
+  const flow = document.getElementById("process");
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); flow.classList.add("in"); } }, { threshold: .25 }).observe(flow.querySelector(".steps"));
+
+  /* hire: Instagram Direct brief */
+  const dmF = document.getElementById("dm-form"), dmMsg = document.getElementById("dm-msg"), dmB = document.getElementById("dm-bubble"), dmS = document.getElementById("dm-status");
+  const dmText = () => { const m = dmMsg.value.trim(); return T("dm.hi") + " " + T("dm.t." + dmF.type.value) + " " + T("dm.s." + dmF.stage.value) + (m ? "\n\n" + m : ""); };
+  function updDm() { dmB.textContent = dmText(); dmMsg.placeholder = T("hire.ph"); }
+  dmF.addEventListener("input", updDm); dmF.addEventListener("change", () => { updDm(); dmS.textContent = ""; });
+  dmF.addEventListener("submit", e => {
+    e.preventDefault(); const txt = dmText(); let copied = false;
+    try { const ta = document.createElement("textarea"); ta.value = txt; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:0;left:0;opacity:0"; document.body.appendChild(ta); ta.select(); copied = document.execCommand("copy"); ta.remove(); } catch (err) {}
+    if (!copied && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(() => {}); copied = true; }
+    window.open(CONFIG.links.dm, "_blank", "noopener");
+    dmS.textContent = copied ? T("dm.ok") : T("dm.nocopy");
+  });
+  document.getElementById("svc-cta").addEventListener("click", () => { const r = document.getElementById("t-" + svcCur); if (r) { r.checked = true; updDm(); } });
+  updDm();
+  langHooks.push(() => { renderSvc(false); updDm(); });
 
   /* hero parallax */
   if (!reduce) addEventListener("pointermove", e => {
@@ -979,7 +1211,7 @@ const T = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.en[k];
     if (!en.isIntersecting) return; const id = en.target.id;
     navLinks.forEach(a => a.dataset.nav === id ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current"));
   }), { rootMargin: "-45% 0px -50% 0px" });
-  ["top", "projects", "about", "connect", "letter"].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+  ["top", "services", "projects", "about", "hire"].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
 
   /* newsletter */
   const form = document.getElementById("letter-form"), email = document.getElementById("email"), status = document.getElementById("letter-status");
@@ -995,6 +1227,3 @@ const T = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.en[k];
   });
 })();
 </script>
-
-</body>
-</html>
