@@ -98,7 +98,8 @@ button { font: inherit; }
 .topnav .brand { padding: 6px 10px 6px 8px; color: var(--paper); }
 .topnav .brand svg { width: 30px; height: 30px; }
 .topnav .cta { background: var(--paper); color: var(--ink); font-weight: 600; margin-left: 6px; }
-.topnav .cta:hover { background: #fff; color: var(--ink); }
+.topnav .cta:hover, .topnav .cta[aria-current="true"] { background: var(--paper); color: var(--ink); }
+.topnav .cta:hover { background: #fff; }
 .tabbar { position: fixed; z-index: 50; left: var(--gutter-l); right: var(--gutter-r); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 6px; border-radius: 999px; }
 .tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px 4px; border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--mist); min-height: 48px; }
 .tabbar a svg { width: 22px; height: 22px; }
@@ -554,6 +555,16 @@ a:hover .logo-anim .l-dot { animation-duration: .3s, 1.2s; }
 .field button { background: var(--espresso); color: var(--crema); }
 .field button:hover { background: #3b281d; }
 .form .note { font-size: 13px; color: var(--roast); }
+.form.paused .field { opacity: .78; }
+.form.paused input:disabled { cursor: not-allowed; -webkit-text-fill-color: #8a7362; }
+.form.paused button:disabled { cursor: not-allowed; background: #6b4a35; color: var(--crema); }
+.brew { display: grid; gap: 6px; }
+.brew-top { display: flex; justify-content: space-between; font: 500 12px var(--font-mono); color: var(--roast); }
+.brew-bar { height: 10px; border-radius: 999px; background: rgba(42,27,19,.12); overflow: hidden; }
+.brew-bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, #6b4a35, #2a1b13 60%, #c9a27e); }
+.brew-bar i.stuck { animation: sip 1.6s ease-in-out infinite; }
+@keyframes sip { 50% { filter: brightness(1.35); } }
+#brew-msg { font-size: 15px; font-weight: 600; color: var(--espresso); min-height: 2.8em; }
 .form .status { font-size: 15px; font-weight: 600; min-height: 1.5em; }
 .form .status.err { color: #9b1c1c; }
 .form .status.ok { color: #1f5130; }
@@ -629,8 +640,8 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
 <nav class="topnav glass" aria-label="Main">
   <a class="brand" href="#top" aria-label="Commit Zero, home"><svg class="logo-anim" viewBox="0 0 200 200" aria-hidden="true"><line class="l-stub" x1="38" y1="100" x2="76" y2="100" stroke="currentColor" stroke-width="16"/><circle class="l-ring" cx="118" cy="100" r="42" fill="none" stroke="currentColor" stroke-width="16"/><circle class="l-dot" cx="118" cy="46" r="9"/></svg></a>
   <a href="#top" data-nav="top" aria-current="true" data-i18n="nav.home">Home</a>
-  <a href="#services" data-nav="services" data-i18n="nav.services">Services</a>
   <a href="#projects" data-nav="projects" data-i18n="nav.projects">Projects</a>
+  <a href="#services" data-nav="services" data-i18n="nav.services">Services</a>
   <a href="#about" data-nav="about" data-i18n="nav.about">About</a>
   <a class="cta" href="#hire" data-nav="hire" data-i18n="nav.hire">Start a project</a>
 </nav>
@@ -640,8 +651,8 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
 </div>
 <nav class="tabbar glass" aria-label="Main">
   <a href="#top" data-nav="top" aria-current="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-git"/></svg><span data-i18n="nav.home">Home</span></a>
-  <a href="#services" data-nav="services"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg><span data-i18n="nav.services">Services</span></a>
   <a href="#projects" data-nav="projects"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-menu"/></svg><span data-i18n="nav.projects">Projects</span></a>
+  <a href="#services" data-nav="services"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg><span data-i18n="nav.services">Services</span></a>
   <a href="#hire" data-nav="hire"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="nav.contact">Contact</span></a>
 </nav>
 
@@ -896,14 +907,17 @@ dialog.sheet[open] { animation: sheet .45s var(--ease); }
         <svg class="steam" viewBox="0 0 100 120"><path d="M30 110c-10-20 10-30 0-50s10-30 0-50"/><path d="M50 110c-10-20 10-30 0-50s10-30 0-50"/><path d="M70 110c-10-20 10-30 0-50s10-30 0-50"/></svg>
         <img src="media/kit-espresso.webp" alt="">
       </div>
-      <form class="form" id="letter-form" novalidate>
+      <form class="form paused" id="letter-form" novalidate aria-describedby="brew-msg">
         <label for="email" data-i18n="letter.label">Your email</label>
         <div class="field">
-          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="letter-note letter-status">
-          <button class="btn" type="submit" data-i18n="nav.subscribe">Subscribe</button>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" disabled data-ph="letter.ph" placeholder="Back soon, grabbing a coffee">
+          <button class="btn" type="submit" disabled data-i18n="letter.btn">On a break</button>
         </div>
-        <p class="note" id="letter-note" data-i18n="letter.note">One email a week. Unsubscribe anytime.</p>
-        <p class="status" id="letter-status" role="status" aria-live="polite"></p>
+        <div class="brew" aria-hidden="true">
+          <div class="brew-top"><span>coffee.exe</span><span id="brew-pct">0%</span></div>
+          <div class="brew-bar"><i id="brew-fill"></i></div>
+        </div>
+        <p class="note" id="brew-msg" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
@@ -944,7 +958,7 @@ const CONFIG = {
     linktree: "https://linktr.ee/commit.zero",
     dm: "https://ig.me/m/commit.zero"          // opens the Instagram Direct chat
   },
-  newsletterEndpoint: ""                     // e.g. a Buttondown embed URL; empty = signups not open yet
+  newsletterEndpoint: ""                     // signups are paused in the page (coffee break); wire this up when opening them
 };
 const COMMITS = [
   ["a1f3c9e", "feat(mu): combo announcer"],
@@ -1016,8 +1030,9 @@ const I18N = {
     "connect.eyebrow": "Behind the commits", "connect.hire": "Want something like this for your business?", "connect.bio": "Building in public · software, games and business", "connect.follow": "Follow", "connect.msg": "Message", "connect.hl3": "Clients", "connect.hl4": "Routine", "connect.note": "posted a new devlog", "connect.now": "now",
     "connect.title": "Follow along", "connect.sub": "The process, the mistakes and the launches. Everything lands on Instagram first, and the clips go to TikTok and YouTube.", "connect.x": "Notes and threads", "connect.all": "All links",
     "letter.eyebrow": "The newsletter", "letter.lead": "One short letter every Sunday, about the length of a coffee. What I built, what broke and what I'm trying next.",
-    "letter.label": "Your email", "letter.note": "One email a week. Unsubscribe anytime.",
-    "letter.invalid": "Enter a valid email, like name@gmail.com.", "letter.soon": "Signups open with the first issue. Follow on Instagram to catch it.",
+    "letter.label": "Your email", "letter.note": "One email a week, once it opens.",
+    "letter.btn": "On a break", "letter.ph": "Back soon, grabbing a coffee",
+    "letter.brew": ["Signups are closed while the developer finishes his coffee.", "Stuck at 99%: waiting for the last sip.", "Estimated time left: one espresso. Maybe two.", "Opens when the cup is empty. Follow @commit.zero to know first."],
     "letter.ok": "You're in. Check your inbox to confirm.", "letter.err": "That didn't go through. Try again in a minute.",
     "sheet.cz": "The brand behind this page. A commit node as the logo, a black and white base with autumn colors, and a site built like a streaming home screen.",
     "sheet.type": "Type", "sheet.typev": "Brand + site", "sheet.logov": "Commit node", "sheet.year": "Year", "sheet.close": "Close"
@@ -1081,8 +1096,9 @@ const I18N = {
     "connect.eyebrow": "Por trás dos commits", "connect.hire": "Quer algo assim pro seu negócio?", "connect.bio": "Construindo em público · software, jogos e negócios", "connect.follow": "Seguir", "connect.msg": "Mensagem", "connect.hl3": "Clientes", "connect.hl4": "Rotina", "connect.note": "postou um novo devlog", "connect.now": "agora",
     "connect.title": "Acompanhe", "connect.sub": "O processo, os erros e os lançamentos. Tudo sai primeiro no Instagram, e os cortes vão pro TikTok e YouTube.", "connect.x": "Notas e threads", "connect.all": "Todos os links",
     "letter.eyebrow": "A newsletter", "letter.lead": "Uma carta curta todo domingo, do tamanho de um café. O que eu construí, o que quebrou e o que vou testar.",
-    "letter.label": "Seu e-mail", "letter.note": "Um e-mail por semana. Cancele quando quiser.",
-    "letter.invalid": "Digite um e-mail válido, como nome@gmail.com.", "letter.soon": "As inscrições abrem com a primeira edição. Siga no Instagram pra não perder.",
+    "letter.label": "Seu e-mail", "letter.note": "Um e-mail por semana, quando abrir.",
+    "letter.btn": "Pausa pro café", "letter.ph": "Volto já, fui pegar um café",
+    "letter.brew": ["Inscrições fechadas até o desenvolvedor terminar o café dele.", "Travado em 99%: esperando o último gole.", "Tempo estimado: mais um espresso. Talvez dois.", "Abre quando a xícara esvaziar. Siga a @commit.zero pra saber primeiro."],
     "letter.ok": "Pronto! Confira sua caixa de entrada pra confirmar.", "letter.err": "Não deu certo. Tente de novo em um minuto.",
     "sheet.cz": "A marca por trás desta página. Um commit como logo, base preta e branca com cores de outono, e um site montado como a tela inicial de um streaming.",
     "sheet.type": "Tipo", "sheet.typev": "Marca + site", "sheet.logov": "Commit", "sheet.year": "Ano", "sheet.close": "Fechar"
@@ -1314,25 +1330,38 @@ const T = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.en[k];
     });
   })();
 
-  /* nav current section */
-  const navLinks = document.querySelectorAll("[data-nav]");
-  const io = new IntersectionObserver(entries => entries.forEach(en => {
-    if (!en.isIntersecting) return; const id = en.target.id;
+  /* nav current section: one scroll-spy, locked while a nav click is scrolling */
+  const navLinks = [...document.querySelectorAll("[data-nav]")];
+  const spyMap = [["top", "top"], ["plans", "top"], ["projects", "projects"], ["services", "services"], ["process", "services"], ["about", "about"], ["hire", "hire"], ["connect", "hire"], ["letter", "hire"]]
+    .map(([id, nav]) => [document.getElementById(id), nav]).filter(([el]) => el);
+  let curNav = null, navLock = 0, spyTick = false;
+  function setNav(id) {
+    if (id === curNav) return; curNav = id;
     navLinks.forEach(a => a.dataset.nav === id ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current"));
-  }), { rootMargin: "-45% 0px -50% 0px" });
-  ["top", "services", "projects", "about", "hire"].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }
+  function spyNow() {
+    if (performance.now() < navLock) return;
+    const line = innerHeight * .4; let id = "top";
+    for (const [el, nav] of spyMap) if (el.getBoundingClientRect().top <= line) id = nav;
+    setNav(id);
+  }
+  addEventListener("scroll", () => { if (spyTick) return; spyTick = true; requestAnimationFrame(() => { spyTick = false; spyNow(); }); }, { passive: true });
+  addEventListener("scrollend", () => { if (navLock) { navLock = 0; } });
+  navLinks.forEach(a => a.addEventListener("click", () => { setNav(a.dataset.nav); navLock = performance.now() + 1600; }));
+  spyNow();
 
-  /* newsletter */
-  const form = document.getElementById("letter-form"), email = document.getElementById("email"), status = document.getElementById("letter-status");
-  form.addEventListener("submit", async e => {
-    e.preventDefault(); status.className = "status";
-    if (!email.value.trim() || !email.checkValidity()) { status.textContent = T("letter.invalid"); status.classList.add("err"); email.setAttribute("aria-invalid", "true"); email.focus(); return; }
-    email.removeAttribute("aria-invalid");
-    if (!CONFIG.newsletterEndpoint) { status.textContent = T("letter.soon"); return; }
-    try { const body = new FormData(); body.append("email", email.value.trim());
-      const res = await fetch(CONFIG.newsletterEndpoint, { method: "POST", body }); if (!res.ok) throw 0;
-      status.textContent = T("letter.ok"); status.classList.add("ok"); form.reset();
-    } catch { status.textContent = T("letter.err"); status.classList.add("err"); }
-  });
+  /* newsletter: paused until the developer finishes his coffee */
+  const brewPct = document.getElementById("brew-pct"), brewFill = document.getElementById("brew-fill"), brewMsg = document.getElementById("brew-msg");
+  let brewK = 0;
+  const brewSay = () => { const m = T("letter.brew"); brewMsg.textContent = m[brewK % m.length]; };
+  brewSay(); langHooks.push(() => { brewSay(); document.getElementById("email").placeholder = T("letter.ph"); });
+  document.getElementById("email").placeholder = T("letter.ph");
+  document.getElementById("letter-form").addEventListener("submit", e => e.preventDefault());
+  new IntersectionObserver(([e], o) => {
+    if (!e.isIntersecting) return; o.disconnect();
+    if (reduce) { brewPct.textContent = "99%"; brewFill.style.width = "99%"; return; }
+    let v = 0; const go = () => { v += v < 80 ? 3 : v < 97 ? 1 : .25; if (v >= 99) v = 99; brewPct.textContent = Math.floor(v) + "%"; brewFill.style.width = v + "%"; if (v < 99) setTimeout(go, 30 + v * .7); else brewFill.classList.add("stuck"); };
+    go(); setInterval(() => { brewK++; brewSay(); }, 4200);
+  }, { threshold: .4 }).observe(document.getElementById("letter-form"));
 })();
 </script>
